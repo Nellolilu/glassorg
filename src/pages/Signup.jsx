@@ -8,8 +8,9 @@ export default function Signup({ authenticate, history }) {
   const [form, setForm] = useState({
     username: "",
     password: "",
+    email: "",
   });
-  const { username, password } = form;
+  const { username, password, email } = form;
   const [error, setError] = useState(null);
 
   function handleInputChange(event) {
@@ -22,6 +23,7 @@ export default function Signup({ authenticate, history }) {
     const credentials = {
       username,
       password,
+      email,
     };
     signup(credentials).then((res) => {
       if (!res.status) {
@@ -51,6 +53,18 @@ export default function Signup({ authenticate, history }) {
           value={username}
           onChange={handleInputChange}
           required
+        />
+
+        <label htmlFor="input-email">Email</label>
+        <input
+          id="input-email"
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email}
+          onChange={handleInputChange}
+          required
+          minLength="8"
         />
 
         <label htmlFor="input-password">Password</label>

@@ -4,8 +4,8 @@ import LoadingComponent from "./components/Loading";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import LogIn from "./pages/LogIn";
-import ProtectedPage from "./pages/ProtectedPage";
 import Signup from "./pages/Signup";
+import ProfilePage from "./pages/ProfilePage";
 import NormalRoute from "./routing-components/NormalRoute";
 import ProtectedRoute from "./routing-components/ProtectedRoute";
 import { getLoggedIn, logout } from "./services/auth";
@@ -74,8 +74,8 @@ export default function App() {
         />
         <ProtectedRoute
           exact
-          path={PATHS.PROTECTEDPAGE}
-          component={ProtectedPage}
+          path={PATHS.PROFILEPAGE}
+          component={ProfilePage}
           user={user}
         />
       </Switch>
