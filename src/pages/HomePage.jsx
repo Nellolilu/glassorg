@@ -1,22 +1,19 @@
 import logo from "../logo.svg";
 import "../App.css";
+import { Link } from "react-router-dom";
+import * as PATHS from "../utils/paths";
 
 function HomePage() {
   return (
-    <div className="App">
+    <div className="Home">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <h1>GO TRANSPARENT</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Fill out the questionaire and share your sustainablilty approaches.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button>
+          <Link to={PATHS.CREATEPAGE}> Create your listing</Link>
+        </button>
       </header>
     </div>
   );
