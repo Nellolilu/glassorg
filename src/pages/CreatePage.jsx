@@ -7,7 +7,6 @@ import * as CONSTS from "../utils/consts";
 
 export default function CreatePage(props) {
   const [form, setForm] = React.useState({
-    name: "",
     url: "",
     email: "",
     adress: "",
@@ -46,14 +45,6 @@ export default function CreatePage(props) {
             <h4>listing of your company</h4>
             <form onSubmit={handleSubmit}>
               <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="company name"
-                  onChange={handleChange}
-                  value={form.name}
-                />
-                <br />
                 <input
                   type="url"
                   name="url"
