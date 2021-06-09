@@ -15,27 +15,27 @@ export default function CreatePage(props) {
     email: "",
     adress: "",
     description: "",
-    size: "",
+    size: "1-2",
     branch: "Production",
     // WHY CANT THIS BE EMPTY; HOW TO GET THIS OPTIONAL
-
-    // // CREATE SINGLE ANSWER ID
-    // answer: "",
-    // // LINK TO QUESTION
-    // question: "",
   });
 
-  // // GET THE BRANCHES & THE QUESTIONS
+  // // GET THE BRANCHES & THE QUESTIONS & ANSWERS
   const [listOfQuestions, setListOfQuestions] = React.useState([]);
   const [listOfBranches, setListOfBranches] = React.useState([]);
   const [listOfSizes, setListOfSizes] = React.useState([]);
   const [answers, setAnswers] = React.useState({});
-  console.log(answers);
 
   React.useEffect(() => {
-    console.log("React use Effect");
+    const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
+    if (!accessToken) {
+      return;
+    }
+
     axios
-      .get(`${CONSTS.SERVER_URL}/create-company`)
+      .get(`${CONSTS.SERVER_URL}/create-company`, {
+        headers: { authorization: accessToken },
+      })
       .then((response) => {
         console.log("response:", response);
         setListOfBranches(response.data.allBranches);
@@ -52,7 +52,6 @@ export default function CreatePage(props) {
   const allFilteredQuestions = listOfQuestions.filter(
     (el) => el.branch === branchFilter._id
   );
-  // console.log("QUESTIONS FILTERED", allFilteredQuestions);
 
   // HANDLE SUBMIT
   function handleChange(event) {
@@ -63,14 +62,16 @@ export default function CreatePage(props) {
     event.preventDefault();
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
 
-    CREATE_SERVICE.CREATE_COMPANY(form, accessToken)
+    CREATE_SERVICE.CREATE_COMPANY(
+      { ...form, questionsAndAnswers: answers, branch: branchFilter._id },
+      accessToken
+    )
       .then((res) => {
         console.log("response on handlesubmit", res);
-        // WHAT IS THAT AGAIN, props.history.push??
         props.history.push(`${PATHS.HOMEPAGE}`);
       })
       .catch((err) => {
-        console.error("err:", err.res);
+        console.error("err:", err.response);
       });
   }
 
@@ -96,7 +97,7 @@ export default function CreatePage(props) {
                 />{" "}
                 <br />
                 <input
-                  type="url"
+                  type="text"
                   name="url"
                   placeholder="website"
                   onChange={handleChange}
@@ -175,6 +176,7 @@ export default function CreatePage(props) {
                             type="text"
                             name="answer"
                             placeholder={oneQuestion.placeholder}
+                            maxLength={100}
                             onChange={(event) => {
                               // console.log(event.target.value);
                               // console.log(oneQuestion);
