@@ -17,6 +17,7 @@ export default function CreatePage(props) {
     description: "",
     size: "1-2",
     branch: "Production",
+    logo: "",
     // WHY CANT THIS BE EMPTY; HOW TO GET THIS OPTIONAL
   });
 
@@ -62,8 +63,25 @@ export default function CreatePage(props) {
     event.preventDefault();
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
 
+    // HANDELING FORM DATA = PICTURES
+    if (logoUpload) {
+      console.log("no logo has been uploaded");
+      return;
+    }
+
+    const formBody = new window.FormData();
+    // append need to be named as in parser backend
+    formBody.append("logo", logoUpload);
+
+    // MAKING THE AXIOS CALL
+
     CREATE_SERVICE.CREATE_COMPANY(
-      { ...form, questionsAndAnswers: answers, branch: branchFilter._id },
+      {
+        ...form,
+        questionsAndAnswers: answers,
+        branch: branchFilter._id,
+        logo: logoUpload,
+      },
       accessToken
     )
       .then((res) => {
@@ -73,6 +91,14 @@ export default function CreatePage(props) {
       .catch((err) => {
         console.error("err:", err.response);
       });
+  }
+
+  // SETUP FOR LOGOUPLOAD
+  const [logoUpload, setLogoUpload] = React.useState(null);
+  function handleInputChange(event) {
+    console.log(event.target.files[0]);
+    const logo = event.target.files[0];
+    setLogoUpload(logo);
   }
 
   // RETURNING FORM
@@ -95,6 +121,10 @@ export default function CreatePage(props) {
                   onChange={handleChange}
                   value={form.name}
                 />{" "}
+                <br />
+                <input type="file" onChange={handleInputChange} />
+                <br />
+                <button type="submit"> Upload a picture</button>
                 <br />
                 <input
                   type="text"

@@ -7,6 +7,7 @@ import LogIn from "./pages/LogIn";
 import Signup from "./pages/Signup";
 import ProfilePage from "./pages/ProfilePage";
 import CreatePage from "./pages/CreatePage";
+import CompanyPage from "./pages/CompanyPage";
 import NormalRoute from "./routing-components/NormalRoute";
 import ProtectedRoute from "./routing-components/ProtectedRoute";
 import { getLoggedIn, logout } from "./services/auth";
@@ -78,11 +79,19 @@ export default function App() {
           path={PATHS.PROFILEPAGE}
           component={ProfilePage}
           user={user}
+          authenticate={authenticate}
         />
+
         <NormalRoute
           exact
           path={PATHS.CREATEPAGE}
           component={CreatePage}
+          user={user}
+        />
+        <NormalRoute
+          exact
+          path={PATHS.SINGLECOMPANYPAGE}
+          component={CompanyPage}
           user={user}
         />
       </Switch>

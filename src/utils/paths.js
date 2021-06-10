@@ -3,3 +3,7 @@ export const SIGNUPPAGE = "/auth/signup";
 export const LOGINPAGE = "/auth/login";
 export const PROFILEPAGE = "/profile";
 export const CREATEPAGE = "/create-company";
+export const UPDATEPAGE = "/update";
+export const CHANGEPWPAGE = "/change-password";
+export const COMPANYROUTE = "/company";
+export const SINGLECOMPANYPAGE = `${COMPANYROUTE}/:companyId`;
