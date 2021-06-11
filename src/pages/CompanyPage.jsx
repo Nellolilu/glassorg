@@ -1,10 +1,13 @@
 import axios from "axios";
 import React from "react";
+import ImageUpload from "../components/ImageUpload/ImageUpload";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
 export default function CompanyPage(props) {
   const [singleCompany, setSingleCompany] = React.useState({});
+  // const {singleCompany, setSingleCompany} = props
+  // THIS DOESNT KEEP TRACK OVER APP:JS
 
   //NO USE
   //   function updateCompany(company) {
@@ -31,7 +34,11 @@ export default function CompanyPage(props) {
     <div>
       <h1>This is the single Company</h1>
       <p>{singleCompany.name}</p>
-      <img src={singleCompany.logo} style={{ width: "300px" }} alt="Dayman" />
+      <ImageUpload company={singleCompany} setCompany={setSingleCompany}>
+        here is teh imageupload component
+      </ImageUpload>
+
+      <img src={singleCompany.image} style={{ width: "300px" }} alt="Dayman" />
     </div>
   );
 }

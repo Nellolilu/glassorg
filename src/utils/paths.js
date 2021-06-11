@@ -7,3 +7,4 @@ export const UPDATEPAGE = "/update";
 export const CHANGEPWPAGE = "/change-password";
 export const COMPANYROUTE = "/company";
 export const SINGLECOMPANYPAGE = `${COMPANYROUTE}/:companyId`;
+export const IMAGEUPLOAD = "/image-upload";

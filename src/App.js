@@ -16,6 +16,8 @@ import * as CONSTS from "./utils/consts";
 
 export default function App() {
   const [user, setUser] = useState(null);
+  // const [singleCompany, setSingleCompany] = React.useState({});
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -82,17 +84,25 @@ export default function App() {
           authenticate={authenticate}
         />
 
-        <NormalRoute
+        <ProtectedRoute
           exact
           path={PATHS.CREATEPAGE}
           component={CreatePage}
           user={user}
+          // DONT KNOW HOW TO GET THIS:
+          // company={singleCompany}
+          // singleCompany={setSingleCompany}
+
+          // setUser={setUser}
         />
         <NormalRoute
           exact
           path={PATHS.SINGLECOMPANYPAGE}
           component={CompanyPage}
           user={user}
+          // singlecompany={singleCompany}
+          // setSingleCompany={setSingleCompany}
+          // user={setUser}
         />
       </Switch>
     </div>
