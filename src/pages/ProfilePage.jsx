@@ -1,10 +1,11 @@
 import React from "react";
 import "../App.css";
 import * as CONSTS from "../utils/consts";
+import * as PATHS from "../utils/paths";
 import * as PROFILE_SERVICE from "../services/profile";
 import UpdateProfile from "../components/Profile/UpdateProfile";
 import UpdatePassword from "../components/Profile/UpdatePassword";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function ProfilePage(props) {
   console.log("props", props);
@@ -64,7 +65,9 @@ export default function ProfilePage(props) {
         return (
           <div key={oneCompany._id}>
             {" "}
-            <h4>{oneCompany.name}</h4>
+            <Link to={`${PATHS.COMPANYROUTE}/${oneCompany._id}`}>
+              <h4>{oneCompany.name}</h4>
+            </Link>
             <p>{oneCompany.url}</p>
           </div>
         );

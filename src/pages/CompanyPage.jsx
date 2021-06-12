@@ -5,7 +5,10 @@ import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
 export default function CompanyPage(props) {
+  const { user } = props;
   const [singleCompany, setSingleCompany] = React.useState({});
+  const [listOfAnswers, setListOfAnswers] = React.useState([]);
+
   // const {singleCompany, setSingleCompany} = props
   // THIS DOESNT KEEP TRACK OVER APP:JS
 
@@ -23,22 +26,61 @@ export default function CompanyPage(props) {
       )
       .then((response) => {
         console.log("response: ", response);
+        console.log("branch: ", response.data.oneCompany.branch.branch);
         setSingleCompany(response.data.oneCompany);
+        setListOfAnswers(response.data.oneCompany.answers);
       })
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [props.match.params.companyId]);
+
+  console.log("single comp", singleCompany);
 
   return (
     <div>
-      <h1>This is the single Company</h1>
-      <p>{singleCompany.name}</p>
-      <ImageUpload company={singleCompany} setCompany={setSingleCompany}>
-        here is teh imageupload component
-      </ImageUpload>
+      {!singleCompany.branch ? (
+        <h3>...loading</h3>
+      ) : (
+        <div>
+          <h1>{singleCompany.name}</h1>
 
-      <img src={singleCompany.image} style={{ width: "300px" }} alt="Dayman" />
+          {user && (
+            <ImageUpload
+              company={singleCompany}
+              setCompany={setSingleCompany}
+            />
+          )}
+
+          <img
+            src={singleCompany.image}
+            style={{ width: "300px" }}
+            alt="Dayman"
+          />
+
+          <div>
+            <h1>This is the Company Data</h1>
+            <p>{singleCompany.adress}</p>
+            <p>{singleCompany.url}</p>
+            <p>Company Size: {singleCompany.size}</p>
+            <p>What they do {singleCompany.description}</p>
+            <p>Branch: {singleCompany.branch.branch}</p>
+          </div>
+
+          <div>
+            <h1>This is the Companies Answers</h1>
+            {listOfAnswers.map((oneQA, index) => {
+              console.log(oneQA);
+              return (
+                <div key={oneQA._id}>
+                  <p>{oneQA.question.question}</p>
+                  <p>{oneQA.answer}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

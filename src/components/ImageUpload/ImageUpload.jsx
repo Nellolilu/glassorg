@@ -51,8 +51,7 @@ export default function ImageUpload(props) {
 
   return (
     <div>
-      <p>this is your uploaded pic</p>
-      <img src={company.image} width="300" alt="company " />
+      <p>upload new pic</p>
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleChange} />
         <button type="submit">send changes</button>

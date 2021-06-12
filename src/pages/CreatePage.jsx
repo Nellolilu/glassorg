@@ -75,7 +75,7 @@ export default function CreatePage(props) {
     )
       .then((res) => {
         console.log("response on handlesubmit", res);
-        props.history.push(`${PATHS.HOMEPAGE}`);
+        props.history.push(`${PATHS.COMPANYROUTE}/${res.data.company._id}`);
       })
       .catch((err) => {
         console.error("err:", err.response);
