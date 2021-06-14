@@ -1,6 +1,7 @@
 import "../App.css";
 import { Link } from "react-router-dom";
 import * as PATHS from "../utils/paths";
+import GetResults from "../components/GetResults/GetResults";
 
 function HomePage() {
   return (
@@ -14,6 +15,9 @@ function HomePage() {
           <Link to={PATHS.CREATEPAGE}> Create your listing</Link>
         </button>
       </header>
+      <section>
+        <GetResults />
+      </section>
     </div>
   );
 }

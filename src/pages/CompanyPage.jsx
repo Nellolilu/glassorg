@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import ImageUpload from "../components/ImageUpload/ImageUpload";
+import ProofUpl from "../components/ImageUpload/ProofUpl";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
@@ -31,11 +32,12 @@ export default function CompanyPage(props) {
         setListOfAnswers(response.data.oneCompany.answers);
       })
       .catch((err) => {
-        console.error(err);
+        console.error("err:", err);
       });
   }, [props.match.params.companyId]);
 
   console.log("single comp", singleCompany);
+  console.log("listOfAnsers", listOfAnswers);
 
   return (
     <div>
@@ -70,11 +72,29 @@ export default function CompanyPage(props) {
           <div>
             <h1>This is the Companies Answers</h1>
             {listOfAnswers.map((oneQA, index) => {
-              console.log(oneQA);
+              console.log("oneQA)", oneQA);
               return (
                 <div key={oneQA._id}>
                   <p>{oneQA.question.question}</p>
                   <p>{oneQA.answer}</p>
+
+                  {oneQA.proof && (
+                    <img
+                      src={oneQA.proof}
+                      style={{ width: "300px" }}
+                      alt="Dayman"
+                    />
+                  )}
+
+                  {user && (
+                    <ProofUpl
+                      oneQAId={oneQA._id}
+                      company={singleCompany}
+                      setCompany={setSingleCompany}
+                      listOfAnswers={listOfAnswers}
+                      setListOfAnswers={setListOfAnswers}
+                    />
+                  )}
                 </div>
               );
             })}

@@ -31,6 +31,16 @@ export default function ProfilePage(props) {
       });
   }, []);
 
+  // counting single companysproof
+  // const proofCount = answers.filter((el) => el.proof.length > 0).length;
+
+  // const count = answers.reduce((counter, obj) => {
+  //   if (obj.proof) {
+  //     if (obj.proof.length > 0) return (counter += 1);
+  //   }
+  //   return counter;
+  // }, 0);
+
   // TOGGLE UPDATING USER FUNCTIONS
   function profileToggle() {
     setDisplayUpdateProfile(!displayUpdateProfile);
@@ -69,6 +79,16 @@ export default function ProfilePage(props) {
               <h4>{oneCompany.name}</h4>
             </Link>
             <p>{oneCompany.url}</p>
+            <p>answered:{oneCompany.answers.length}</p>
+            <p>
+              proofed:{" "}
+              {oneCompany.answers.reduce((counter, obj) => {
+                if (obj.proof) {
+                  if (obj.proof.length > 0) return (counter += 1);
+                }
+                return counter;
+              }, 0)}
+            </p>
           </div>
         );
       })}
