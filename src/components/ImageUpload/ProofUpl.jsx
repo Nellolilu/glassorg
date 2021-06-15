@@ -6,7 +6,7 @@ import * as CONSTS from "../../utils/consts";
 export default function ProofUpl(props) {
   const { company, oneQAId } = props;
 
-  console.log("oneQuestionId", oneQAId);
+  // console.log("oneQuestionId", oneQAId);
 
   // SETUP FOR LOGOUPLOAD
   const [imageUpload, setImageUpload] = React.useState(null);

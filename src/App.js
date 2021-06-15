@@ -100,9 +100,9 @@ export default function App() {
           path={PATHS.SINGLECOMPANYPAGE}
           component={CompanyPage}
           user={user}
+          setUser={setUser}
           // singlecompany={singleCompany}
           // setSingleCompany={setSingleCompany}
-          // user={setUser}
         />
       </Switch>
     </div>

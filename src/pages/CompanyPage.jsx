@@ -7,7 +7,8 @@ import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
 export default function CompanyPage(props) {
-  const { user } = props;
+  const { user, setUser } = props;
+  console.log("props from company page", props)
   const [singleCompany, setSingleCompany] = React.useState({});
   const [listOfAnswers, setListOfAnswers] = React.useState([]);
 
@@ -27,8 +28,8 @@ export default function CompanyPage(props) {
         `${CONSTS.SERVER_URL}${PATHS.COMPANYROUTE}/${props.match.params.companyId}`
       )
       .then((response) => {
-        console.log("response: ", response);
-        console.log("branch: ", response.data.oneCompany.branch.branch);
+        // console.log("response: ", response);
+        // console.log("branch: ", response.data.oneCompany.branch.branch);
         setSingleCompany(response.data.oneCompany);
         setListOfAnswers(response.data.oneCompany.answers);
       })
@@ -37,8 +38,8 @@ export default function CompanyPage(props) {
       });
   }, [props.match.params.companyId]);
 
-  console.log("single comp", singleCompany);
-  console.log("listOfAnsers", listOfAnswers);
+  // console.log("single comp", singleCompany);
+  // console.log("listOfAnsers", listOfAnswers);
 
   return (
     <div>
@@ -60,7 +61,7 @@ export default function CompanyPage(props) {
             style={{ width: "300px" }}
             alt="Dayman"
           />
-          <Remember companyId={singleCompany._id} user={user} />
+          <Remember companyId={singleCompany._id} user={user} setUser={setUser}/>
 
           <div>
             <h1>This is the Company Data</h1>
@@ -74,7 +75,7 @@ export default function CompanyPage(props) {
           <div>
             <h1>This is the Companies Answers</h1>
             {listOfAnswers.map((oneQA, index) => {
-              console.log("oneQA)", oneQA);
+              // console.log("oneQA)", oneQA);
               return (
                 <div key={oneQA._id}>
                   <p>{oneQA.question.question}</p>

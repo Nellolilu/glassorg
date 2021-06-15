@@ -12,6 +12,10 @@ export default function ProfilePage(props) {
   const { user, authenticate } = props;
   const [listOfCompanies, setListOfCompanies] = React.useState([]);
 
+// ITS ALSO IN THE USER; BUT STATE SHOULD BE LIFTED; ONLY GETS IT BY REFRESH
+// const [listOfFollows, setListOfFollows] = React.useState([]);
+
+
   const [displayUpdateProfile, setDisplayUpdateProfile] = React.useState(false);
   const [displayUpdatePassword, setDisplayUpdatePassword] =
     React.useState(false);
@@ -24,12 +28,17 @@ export default function ProfilePage(props) {
     }
     PROFILE_SERVICE.PROFILE(accessToken)
       .then((response) => {
-        console.log(response);
+        console.log("response on getting Profile",response);
         setListOfCompanies(response.data.ownedCompanies);
+        console.log(listOfCompanies)
+        // setListOfFollows(response.data.followedCompanies);
+        // console.log(listOfFollows)
+
       })
       .catch((err) => {
         console.error(err);
       });
+      // eslint-disable-next-line
   }, []);
 
   // counting single companysproof
@@ -52,6 +61,7 @@ export default function ProfilePage(props) {
   }
 
   console.log("follows:", user.follows);
+
 
   return (
     <div>
@@ -100,9 +110,10 @@ export default function ProfilePage(props) {
       <h4>THIS ARE THE ONES YOU FOLLOW</h4>
       {user.follows.map((oneCompany) => {
         return (
-          <div>
-            <h4>{oneCompany.name}</h4>
-          </div>
+          <div key={oneCompany._id}>
+            <Link to={`${PATHS.COMPANYROUTE}/${oneCompany._id}`}>
+              <h4>{oneCompany.name}</h4>
+            </Link>          </div>
         );
       })}
     </div>
