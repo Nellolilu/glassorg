@@ -4,8 +4,7 @@ import * as PATHS from "../../utils/paths";
 import * as CONSTS from "../../utils/consts";
 
 export default function ProofUpl(props) {
-  const { company, setCompany, listOfAnswers, setListOfAnswers, oneQAId } =
-    props;
+  const { company, oneQAId } = props;
 
   console.log("oneQuestionId", oneQAId);
 

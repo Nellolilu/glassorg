@@ -11,6 +11,7 @@ export default function ProfilePage(props) {
   console.log("props", props);
   const { user, authenticate } = props;
   const [listOfCompanies, setListOfCompanies] = React.useState([]);
+
   const [displayUpdateProfile, setDisplayUpdateProfile] = React.useState(false);
   const [displayUpdatePassword, setDisplayUpdatePassword] =
     React.useState(false);
@@ -50,6 +51,8 @@ export default function ProfilePage(props) {
     setDisplayUpdatePassword(!displayUpdatePassword);
   }
 
+  console.log("follows:", user.follows);
+
   return (
     <div>
       hello {user.username}
@@ -70,6 +73,7 @@ export default function ProfilePage(props) {
         <button>Delete Account</button>
       </div>
       <br />
+      {/* COMPANIES OWNED */}
       <div>this is your created company</div>
       {listOfCompanies.map((oneCompany) => {
         return (
@@ -89,6 +93,15 @@ export default function ProfilePage(props) {
                 return counter;
               }, 0)}
             </p>
+          </div>
+        );
+      })}
+      {/* FOLLOWS */}
+      <h4>THIS ARE THE ONES YOU FOLLOW</h4>
+      {user.follows.map((oneCompany) => {
+        return (
+          <div>
+            <h4>{oneCompany.name}</h4>
           </div>
         );
       })}

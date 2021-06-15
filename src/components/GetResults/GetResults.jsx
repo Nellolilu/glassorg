@@ -5,29 +5,28 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function GetResults(props) {
-  const {} = props;
   const [listOfCompanies, setListOfCompanies] = React.useState([]);
 
-  //SEARCHBAR
-  const [searchResults, setSearchResults] = React.useState([]);
-  const [searchTerm, setSearchTerm] = React.useState("");
-  function handleChange(event) {
-    setSearchTerm(event.target.value);
-  }
-  function handleSubmit(event) {
-    event.preventDefault();
-    const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
-  }
+  // //SEARCHBAR
+  // const [searchResults, setSearchResults] = React.useState([]);
+  // const [searchTerm, setSearchTerm] = React.useState("");
+  // function handleChange(event) {
+  //   setSearchTerm(event.target.value);
+  // }
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
+  // }
 
-  React.useEffect(() => {
-    const results = listOfCompanies.filter((filteredCompanies) =>
-      searchTerm.includes(filteredCompanies)
-    );
-    setSearchResults(results);
-  }, [searchTerm]);
+  // React.useEffect(() => {
+  //   const results = listOfCompanies.filter((filteredCompanies) =>
+  //     filteredCompanies.includes(searchTerm)
+  //   );
+  //   setSearchResults(results);
+  // }, [searchTerm]);
 
-  console.log(searchTerm);
-  console.log(searchResults);
+  // console.log(searchTerm);
+  // console.log(searchResults);
 
   React.useEffect(() => {
     // const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
@@ -65,12 +64,12 @@ export default function GetResults(props) {
 
   return (
     <div>
-      <input
+      {/* <input
         type="text"
         placeholder="search"
         value={searchTerm}
         onChange={handleChange}
-      ></input>
+      ></input> */}
 
       <div>this are the found companies</div>
 

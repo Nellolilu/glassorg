@@ -10,6 +10,8 @@ export const SINGLECOMPANYPAGE = `${COMPANYROUTE}/:companyId`;
 export const IMAGEUPLOAD = "/image-upload";
 export const PROOFUPLOAD = "/proof-upload";
 export const RESULTS = "/results";
+export const REMEMBER = "/remember";
+
 export const BRANCH_PRODUCTION = "/branch=production";
 export const BRANCH_SERVICE = "/branch=service";
 export const BRANCH_SALES = "/branch=sales";

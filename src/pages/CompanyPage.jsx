@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import ImageUpload from "../components/ImageUpload/ImageUpload";
 import ProofUpl from "../components/ImageUpload/ProofUpl";
+import Remember from "../components/Remember/Remember";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
@@ -59,6 +60,7 @@ export default function CompanyPage(props) {
             style={{ width: "300px" }}
             alt="Dayman"
           />
+          <Remember companyId={singleCompany._id} user={user} />
 
           <div>
             <h1>This is the Company Data</h1>
