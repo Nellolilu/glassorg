@@ -7,7 +7,6 @@ import axios from "axios";
 export default function GetResults(props) {
   const [listOfCompanies, setListOfCompanies] = React.useState([]);
 
-
   //GETTING ALL
 
   React.useEffect(() => {
@@ -26,7 +25,7 @@ export default function GetResults(props) {
       });
   }, []);
 
-   //SEARCHBAR
+  //SEARCHBAR
   const [searchResults, setSearchResults] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState("");
   function handleChange(event) {
@@ -38,32 +37,28 @@ export default function GetResults(props) {
   }
 
   React.useEffect(() => {
-    const results = listOfCompanies.filter(filteredCompanies =>
-      filteredCompanies.name === searchTerm);
-      // THIS ONLY WORKS WITH FULL NAME
-    
+    const results = listOfCompanies.filter(
+      (filteredCompanies) => filteredCompanies.name === searchTerm
+    );
+    // THIS ONLY WORKS WITH FULL NAME
+
     setSearchResults(results);
   }, [searchTerm]);
 
   console.log(searchTerm);
   console.log("results ", searchResults);
 
-
-
   // FILTER BY BRANCH
 
-function filter(branch) {
-  const results = listOfCompanies.filter(filteredCompanies =>
-      filteredCompanies.branch.branch === branch);
-      console.log("result from branchfilter", results)
-}
-
-
-
+  function filter(branch) {
+    const results = listOfCompanies.filter(
+      (filteredCompanies) => filteredCompanies.branch.branch === branch
+    );
+    console.log("result from branchfilter", results);
+  }
 
   return (
-
-// SEARCHBAR HAS NO RESULTS SHOWING YET
+    // SEARCHBAR HAS NO RESULTS SHOWING YET
     <div>
       <input
         type="text"
@@ -72,17 +67,11 @@ function filter(branch) {
         onChange={handleChange}
       ></input>
 
-<button onClick={filter("Service")}>Service
-</button>
-<button onClick={filter("Other")}>Other
-</button>
-<button onClick={filter("Production")}>Production
-</button>
-<button onClick={filter("Sales")}>Sales
-</button>
-<button onClick={filter("Food")}>Food
-</button>
-
+      <button onClick={filter("Service")}>Service</button>
+      <button onClick={filter("Other")}>Other</button>
+      <button onClick={filter("Production")}>Production</button>
+      <button onClick={filter("Sales")}>Sales</button>
+      <button onClick={filter("Food")}>Food</button>
 
       <div>this are the found companies</div>
 
@@ -96,10 +85,7 @@ function filter(branch) {
             </Link>
             <p>{oneCompany.url}</p>
             <p>answered:{oneCompany.answers.length}</p>
-            <p>
-                            proofed:{oneCompany.answers.filter(el => el.proof).length}
-
-            </p>
+            <p>proofed:{oneCompany.answers.filter((el) => el.proof).length}</p>
           </div>
         );
       })}

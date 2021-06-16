@@ -3,12 +3,13 @@ import React from "react";
 import ImageUpload from "../components/ImageUpload/ImageUpload";
 import ProofUpl from "../components/ImageUpload/ProofUpl";
 import Remember from "../components/Remember/Remember";
+import Rating from "../components/Trust-Rating/Rating";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
 export default function CompanyPage(props) {
   const { user, setUser } = props;
-  console.log("props from company page", props)
+  console.log("props from company page", props);
   const [singleCompany, setSingleCompany] = React.useState({});
   const [listOfAnswers, setListOfAnswers] = React.useState([]);
 
@@ -61,7 +62,11 @@ export default function CompanyPage(props) {
             style={{ width: "300px" }}
             alt="Dayman"
           />
-          <Remember companyId={singleCompany._id} user={user} setUser={setUser}/>
+          <Remember
+            companyId={singleCompany._id}
+            user={user}
+            setUser={setUser}
+          />
 
           <div>
             <h1>This is the Company Data</h1>
@@ -104,6 +109,11 @@ export default function CompanyPage(props) {
           </div>
         </div>
       )}
+      <Rating
+        user={user}
+        company={singleCompany}
+        setCompany={setSingleCompany}
+      />
     </div>
   );
 }

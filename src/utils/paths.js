@@ -12,7 +12,7 @@ export const PROOFUPLOAD = "/proof-upload";
 export const RESULTS = "/results";
 export const REMEMBER = "/remember";
 export const FORGET = "/dont-remember";
-
+export const RATE = "/rate";
 
 export const BRANCH_PRODUCTION = "/branch=production";
 export const BRANCH_SERVICE = "/branch=service";
