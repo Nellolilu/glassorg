@@ -9,7 +9,7 @@ import * as PATHS from "../utils/paths";
 
 export default function CompanyPage(props) {
   const { user, setUser } = props;
-  console.log("props from company page", props);
+  // console.log("props from company page", props);
   const [singleCompany, setSingleCompany] = React.useState({});
   const [listOfAnswers, setListOfAnswers] = React.useState([]);
 

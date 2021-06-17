@@ -26,7 +26,7 @@ export default function Rating(props) {
   function handleSubmit(event) {
     event.preventDefault();
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
-    console.log(CONSTS.ACCESS_TOKEN);
+    // console.log(CONSTS.ACCESS_TOKEN);
     axios
       .put(
         `${CONSTS.SERVER_URL}${PATHS.COMPANYROUTE}/${company._id}${PATHS.RATE}`,
@@ -49,15 +49,15 @@ export default function Rating(props) {
   // HANDLE OPTIONS
 
   const [selectedOption, setOptionState] = React.useState(null);
-  console.log("currently selected", selectedOption);
+  // console.log("currently selected", selectedOption);
 
   function handleRadioChange(event) {
     setOptionState(event.target.value);
     setForm({ ...form, [event.target.name]: event.target.value });
   }
 
-  console.log("form", form);
-  console.log("company.ratings", company.ratings);
+  // console.log("form", form);
+  // console.log("company.ratings", company.ratings);
 
   return (
     <div>

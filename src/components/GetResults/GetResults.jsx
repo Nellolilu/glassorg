@@ -4,8 +4,9 @@ import * as PATHS from "../../utils/paths";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-export default function GetResults(props) {
+export default function GetResults() {
   const [listOfCompanies, setListOfCompanies] = React.useState([]);
+  const [listOfAll, setListOfAll] = React.useState([]);
 
   //GETTING ALL
 
@@ -19,6 +20,7 @@ export default function GetResults(props) {
       .then((response) => {
         console.log(response);
         setListOfCompanies(response.data.allCompanies);
+        setListOfAll(response.data.allCompanies);
       })
       .catch((err) => {
         console.error(err);
@@ -31,51 +33,73 @@ export default function GetResults(props) {
   function handleChange(event) {
     setSearchTerm(event.target.value);
   }
+
   function handleSubmit(event) {
     event.preventDefault();
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
   }
 
   React.useEffect(() => {
-    const results = listOfCompanies.filter(
-      (filteredCompanies) => filteredCompanies.name === searchTerm
+    const results = listOfAll.filter((filteredCompanies) =>
+      filteredCompanies.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    // THIS ONLY WORKS WITH FULL NAME
-
     setSearchResults(results);
   }, [searchTerm]);
 
   console.log(searchTerm);
   console.log("results ", searchResults);
 
-  // FILTER BY BRANCH
+  React.useEffect(() => {
+    console.log(listOfAll);
+    if (searchResults.length > 0) {
+      console.log("NOW YOU COULD SWITCH");
+      setListOfCompanies(searchResults);
+    }
+    // } else {
+    // TODO RETURN DIV SAYING NO FOUND
+    // }
+  }, [searchResults, searchTerm]);
 
+  // FILTER BY BRANCH
   function filter(branch) {
-    const results = listOfCompanies.filter(
+    setListOfCompanies(listOfAll);
+    setSearchTerm("");
+    // console.log("searchresults", searchResults);
+    // console.log("listof alls", listOfAll);
+    const results = listOfAll.filter(
       (filteredCompanies) => filteredCompanies.branch.branch === branch
     );
-    console.log("result from branchfilter", results);
+    setListOfCompanies(results);
+    // console.log("result from branchfilter", results);
+  }
+
+  // CLEAR SEARCH
+  function clearSearch() {
+    setListOfCompanies(listOfAll);
+    setSearchTerm("");
   }
 
   return (
-    // SEARCHBAR HAS NO RESULTS SHOWING YET
     <div>
-      <input
-        type="text"
-        placeholder="search"
-        value={searchTerm}
-        onChange={handleChange}
-      ></input>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="search"
+          value={searchTerm}
+          onChange={handleChange}
+        ></input>
+        <button>search</button>
+      </form>
 
-      <button onClick={filter("Service")}>Service</button>
-      <button onClick={filter("Other")}>Other</button>
-      <button onClick={filter("Production")}>Production</button>
-      <button onClick={filter("Sales")}>Sales</button>
-      <button onClick={filter("Food")}>Food</button>
+      <button onClick={() => filter("Service")}>Service</button>
+      <button onClick={() => filter("Other")}>Other</button>
+      <button onClick={() => filter("Production")}>Production</button>
+      <button onClick={() => filter("Sales")}>Sales</button>
+      <button onClick={() => filter("Food")}>Food</button>
+      <button onClick={clearSearch}>All</button>
 
       <div>this are the found companies</div>
 
-      {/* // HERE PASS A BRANCH VIA BUTTON AS PROPS? //HOW  OR FILTER VIA PASSED */}
       {listOfCompanies.map((oneCompany) => {
         return (
           <div key={oneCompany._id}>
