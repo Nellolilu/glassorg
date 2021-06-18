@@ -4,6 +4,7 @@ import ImageUpload from "../components/ImageUpload/ImageUpload";
 import ProofUpl from "../components/ImageUpload/ProofUpl";
 import Remember from "../components/Remember/Remember";
 import Rating from "../components/Trust-Rating/Rating";
+import RatingCalc from "../components/Trust-Rating/RatingCalc";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
@@ -49,7 +50,7 @@ export default function CompanyPage(props) {
       ) : (
         <div>
           <h1>{singleCompany.name}</h1>
-
+          <RatingCalc company={singleCompany} />
           {user && (
             <ImageUpload
               company={singleCompany}
@@ -96,7 +97,7 @@ export default function CompanyPage(props) {
 
                   {user && (
                     <ProofUpl
-                      oneQAId={oneQA._id}
+                      oneQA={oneQA}
                       company={singleCompany}
                       setCompany={setSingleCompany}
                       listOfAnswers={listOfAnswers}

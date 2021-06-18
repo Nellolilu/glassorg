@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
+import RatingCalc from "./RatingCalc";
 
 export default function Rating(props) {
   const { user, company, setCompany } = props;
@@ -118,13 +119,18 @@ export default function Rating(props) {
       {!company.ratings ? (
         <p> is loading</p>
       ) : (
-        company.ratings.map((rating, index) => {
-          return (
-            <div key={rating._id}>
-              <h6> {rating.comment}</h6>
-            </div>
-          );
-        })
+        <div>
+          {/* <RatingCalc /> */}
+          {company.ratings.map((rating) => {
+            return (
+              <div key={rating._id}>
+                <p> {rating.date}</p>
+                <p> {rating.name}</p>
+                <p> {rating.comment}</p>
+              </div>
+            );
+          })}
+        </div>
       )}
     </div>
   );

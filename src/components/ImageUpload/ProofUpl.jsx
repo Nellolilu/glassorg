@@ -4,9 +4,8 @@ import * as PATHS from "../../utils/paths";
 import * as CONSTS from "../../utils/consts";
 
 export default function ProofUpl(props) {
-  const { company, oneQAId } = props;
-
-  // console.log("oneQuestionId", oneQAId);
+  const { company, oneQA, setListOfAnswers } = props;
+  const oneQAId = oneQA._id;
 
   // SETUP FOR LOGOUPLOAD
   const [imageUpload, setImageUpload] = React.useState(null);
@@ -43,10 +42,7 @@ export default function ProofUpl(props) {
       .then((response) => {
         console.log(response);
         console.log("resp.data", response.data);
-
-        // NEED TO SET INDE THE ONE Q&A
-        // THIS IS BREAKING!!
-        // setListOfAnswers(response.data.newImage);
+        setListOfAnswers(response.data.company.answers);
       })
       .then((res) => {
         console.log("response on handlesubmit", res);
