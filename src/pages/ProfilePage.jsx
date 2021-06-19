@@ -5,49 +5,17 @@ import * as PATHS from "../utils/paths";
 import * as PROFILE_SERVICE from "../services/profile";
 import UpdateProfile from "../components/Profile/UpdateProfile";
 import UpdatePassword from "../components/Profile/UpdatePassword";
+import LoadingComponent from "../components/Loading";
 import { Link } from "react-router-dom";
 
 export default function ProfilePage(props) {
   console.log("props", props);
   const { user, authenticate } = props;
   const [listOfCompanies, setListOfCompanies] = React.useState([]);
-
-  // ITS ALSO IN THE USER; BUT STATE SHOULD BE LIFTED; ONLY GETS IT BY REFRESH
-  // const [listOfFollows, setListOfFollows] = React.useState([]);
-
+  const [isLoading, setIsLoading] = React.useState(true);
   const [displayUpdateProfile, setDisplayUpdateProfile] = React.useState(false);
   const [displayUpdatePassword, setDisplayUpdatePassword] =
     React.useState(false);
-
-  // RECEIVE USER INFO
-  React.useEffect(() => {
-    const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
-    if (!accessToken) {
-      return;
-    }
-    PROFILE_SERVICE.PROFILE(accessToken)
-      .then((response) => {
-        console.log("response on getting Profile", response);
-        setListOfCompanies(response.data.ownedCompanies);
-        console.log(listOfCompanies);
-        // setListOfFollows(response.data.followedCompanies);
-        // console.log(listOfFollows)
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    // eslint-disable-next-line
-  }, []);
-
-  // counting single companysproof
-  // const proofCount = answers.filter((el) => el.proof.length > 0).length;
-
-  // const count = answers.reduce((counter, obj) => {
-  //   if (obj.proof) {
-  //     if (obj.proof.length > 0) return (counter += 1);
-  //   }
-  //   return counter;
-  // }, 0);
 
   // TOGGLE UPDATING USER FUNCTIONS
   function profileToggle() {
@@ -58,7 +26,30 @@ export default function ProfilePage(props) {
     setDisplayUpdatePassword(!displayUpdatePassword);
   }
 
-  console.log("follows:", user.follows);
+  // RECEIVE USER INFO
+  React.useEffect(() => {
+    setIsLoading(true);
+    const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
+    if (!accessToken) {
+      return;
+    }
+    PROFILE_SERVICE.PROFILE(accessToken)
+      .then((response) => {
+        console.log("response on getting Profile", response);
+        setListOfCompanies(response.data.ownedCompanies);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+    // eslint-disable-next-line
+  }, []);
+
+  if (isLoading) {
+    return <LoadingComponent />;
+  }
 
   return (
     <div>
@@ -108,13 +99,12 @@ export default function ProfilePage(props) {
       {user.follows.map((oneCompany) => {
         return (
           <div key={oneCompany._id}>
-            <h4>{oneCompany.name}</h4>
+            <Link to={`${PATHS.COMPANYROUTE}/${oneCompany._id}`}>
+              <h4>{oneCompany.name}</h4>
+            </Link>{" "}
           </div>
         );
       })}
     </div>
   );
 }
-
-// <Link to={`${PATHS.COMPANYROUTE}/${oneCompany._id}`}>
-// </Link>

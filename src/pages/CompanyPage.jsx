@@ -5,24 +5,19 @@ import ProofUpl from "../components/ImageUpload/ProofUpl";
 import Remember from "../components/Remember/Remember";
 import Rating from "../components/Trust-Rating/Rating";
 import RatingCalc from "../components/Trust-Rating/RatingCalc";
+import LoadingComponent from "../components/Loading";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
 export default function CompanyPage(props) {
   const { user, setUser } = props;
-  // console.log("props from company page", props);
   const [singleCompany, setSingleCompany] = React.useState({});
+  console.log("comoany in companypage", singleCompany);
   const [listOfAnswers, setListOfAnswers] = React.useState([]);
-
-  // const {singleCompany, setSingleCompany} = props
-  // THIS DOESNT KEEP TRACK OVER APP:JS
-
-  //NO USE
-  //   function updateCompany(company) {
-  //     setSingleCompany(company);
-  //   }
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
+    setIsLoading(true);
     // LATE FOR FOLLOW & CHAIN?
     // const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
     axios
@@ -30,18 +25,20 @@ export default function CompanyPage(props) {
         `${CONSTS.SERVER_URL}${PATHS.COMPANYROUTE}/${props.match.params.companyId}`
       )
       .then((response) => {
-        // console.log("response: ", response);
-        // console.log("branch: ", response.data.oneCompany.branch.branch);
         setSingleCompany(response.data.oneCompany);
         setListOfAnswers(response.data.oneCompany.answers);
       })
       .catch((err) => {
         console.error("err:", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [props.match.params.companyId]);
 
-  // console.log("single comp", singleCompany);
-  // console.log("listOfAnsers", listOfAnswers);
+  if (isLoading) {
+    return <LoadingComponent />;
+  }
 
   return (
     <div>
@@ -50,7 +47,6 @@ export default function CompanyPage(props) {
       ) : (
         <div>
           <h1>{singleCompany.name}</h1>
-          <RatingCalc company={singleCompany} />
           {user && (
             <ImageUpload
               company={singleCompany}
@@ -110,6 +106,8 @@ export default function CompanyPage(props) {
           </div>
         </div>
       )}
+      <RatingCalc company={singleCompany} />
+
       <Rating
         user={user}
         company={singleCompany}

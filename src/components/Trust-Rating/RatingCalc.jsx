@@ -2,15 +2,16 @@ import React from "react";
 
 export default function RatingCalc(props) {
   const { company } = props;
-  console.log("company in rating", company);
+  console.log("company in ratingCalc", company);
 
   // CALCULATE RATING
 
+  // SET UP FOR BONUS
   const maxAnswers = 5;
   const maxProofs = 5;
   let startingValue = 3;
 
-  // GIVES BONUS FOR ALL ANSWERS
+  // // GIVES BONUS FOR ALL ANSWERS
   if (company.answers.length === maxAnswers) {
     startingValue += 0.5;
   }
@@ -23,33 +24,57 @@ export default function RatingCalc(props) {
     startingValue += 0.5;
   }
 
-  let calcRating = startingValue;
+  // SET UP FOR CALCULATION
+  // let calcRating = startingValue;
+  let calcRating = 0;
+  let averageRating;
+  let publicSum = 0;
+  let privateSum = 0;
+  let mappedDouble = 0;
+  let mappedSingle = 0;
 
-  // COUNTING THE PUBLIC RATINGS
-  if (company.ratings.length > 1) {
+  // COUNTING THE RATINGS
+  if (company.ratings.length > 0) {
     //// CALC PUBLIC
     const filteredPublic = company.ratings.filter(
       (el) => el.name !== "anonymus"
     );
-    console.log("not anony", filteredPublic);
-    const mappedDouble = filteredPublic.map((el) => el.rating * 2);
-    console.log("mapped", mappedDouble);
-    const publicSum = mappedDouble.reduce((acc, curr) => acc + curr);
-    console.log("puclictotal", publicSum);
+    if (filteredPublic.length > 0) {
+      const mappedDoubleArr = filteredPublic.map((el) => el.rating * 2);
+      publicSum += mappedDoubleArr.reduce((acc, curr) => acc + curr);
+      mappedDouble += mappedDoubleArr.length * 2;
+    }
 
-    ///// CALC PRIVATE
+    //// CALC PRIVATE
     const filteredPrivate = company.ratings.filter(
       (el) => el.name === "anonymus"
     );
-    const mappedResults = filteredPrivate.map((el) => el.rating);
-    const privateSum = mappedResults.reduce((acc, curr) => acc + curr);
-    console.log("priv", privateSum);
-    calcRating += publicSum + privateSum;
+    if (filteredPrivate.length > 0) {
+      const mappedPrivateArr = filteredPrivate.map((el) => el.rating);
+      privateSum += mappedPrivateArr.reduce((acc, curr) => acc + curr);
+      mappedSingle += mappedPrivateArr.length;
+    }
+
+    // TOTAL RATINGS
+    calcRating += publicSum + privateSum + startingValue;
+    console.log("rates", publicSum + privateSum);
+    console.log("starting v", startingValue);
+
+    console.log("total", calcRating);
+
+    // /// GET AVERAGE
+    // PUBLIC COUNTS DOUBLE; INITIAL VALUE COUNTS 2 (to avoid big influence on first rating)
+    const divider = mappedDouble + mappedSingle + 2;
+    averageRating = calcRating / divider;
+
+    // IF NO RATINGS YET - INITIAL VALUE INCL BONUSSES
+  } else {
+    averageRating = calcRating + startingValue;
   }
 
   return (
     <div>
-      <h1>This is the average {calcRating}</h1>
+      <h1>This is the average {averageRating}</h1>
     </div>
   );
 }

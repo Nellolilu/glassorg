@@ -5,8 +5,40 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function GetResults() {
-  const [listOfCompanies, setListOfCompanies] = React.useState([]);
-  const [listOfAll, setListOfAll] = React.useState([]);
+  const [selected, setSelected] = React.useState("All");
+  const [allOptions, setAllOptions] = React.useState([]);
+  const [inputValue, setInputValue] = React.useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
+  function handleInputChange({ target }) {
+    setInputValue(target.value);
+  }
+  function exchangeBranches(value) {
+    console.log("CHANGIN VLAUE", value);
+    setInputValue("");
+    setSelected(value);
+  }
+
+  const filteredOptions = allOptions.filter((e) => {
+    if (selected === "All") {
+      if (!inputValue) {
+        return true;
+      }
+      return e.name.toLowerCase().includes(inputValue.toLowerCase());
+    }
+
+    if (!inputValue) {
+      return e.branch.branch === selected;
+    }
+    if (e.name.toLowerCase().includes(inputValue.toLowerCase())) {
+      return true;
+    }
+
+    return e.branch.branch === selected;
+  });
 
   //GETTING ALL
 
@@ -19,65 +51,12 @@ export default function GetResults() {
       .get(`${CONSTS.SERVER_URL}${PATHS.RESULTS}`)
       .then((response) => {
         console.log(response);
-        setListOfCompanies(response.data.allCompanies);
-        setListOfAll(response.data.allCompanies);
+        setAllOptions(response.data.allCompanies);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
-
-  //SEARCHBAR
-  const [searchResults, setSearchResults] = React.useState([]);
-  const [searchTerm, setSearchTerm] = React.useState("");
-  function handleChange(event) {
-    setSearchTerm(event.target.value);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
-  }
-
-  React.useEffect(() => {
-    const results = listOfAll.filter((filteredCompanies) =>
-      filteredCompanies.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setSearchResults(results);
-  }, [searchTerm]);
-
-  console.log(searchTerm);
-  console.log("results ", searchResults);
-
-  React.useEffect(() => {
-    console.log(listOfAll);
-    if (searchResults.length > 0) {
-      console.log("NOW YOU COULD SWITCH");
-      setListOfCompanies(searchResults);
-    }
-    // } else {
-    // TODO RETURN DIV SAYING NO FOUND
-    // }
-  }, [searchResults, searchTerm]);
-
-  // FILTER BY BRANCH
-  function filter(branch) {
-    setListOfCompanies(listOfAll);
-    setSearchTerm("");
-    // console.log("searchresults", searchResults);
-    // console.log("listof alls", listOfAll);
-    const results = listOfAll.filter(
-      (filteredCompanies) => filteredCompanies.branch.branch === branch
-    );
-    setListOfCompanies(results);
-    // console.log("result from branchfilter", results);
-  }
-
-  // CLEAR SEARCH
-  function clearSearch() {
-    setListOfCompanies(listOfAll);
-    setSearchTerm("");
-  }
 
   return (
     <div>
@@ -85,22 +64,22 @@ export default function GetResults() {
         <input
           type="text"
           placeholder="search"
-          value={searchTerm}
-          onChange={handleChange}
+          value={inputValue}
+          onChange={handleInputChange}
         ></input>
         <button>search</button>
       </form>
 
-      <button onClick={() => filter("Service")}>Service</button>
-      <button onClick={() => filter("Other")}>Other</button>
-      <button onClick={() => filter("Production")}>Production</button>
-      <button onClick={() => filter("Sales")}>Sales</button>
-      <button onClick={() => filter("Food")}>Food</button>
-      <button onClick={clearSearch}>All</button>
+      <button onClick={() => exchangeBranches("Service")}>Service</button>
+      <button onClick={() => exchangeBranches("Other")}>Other</button>
+      <button onClick={() => exchangeBranches("Production")}>Production</button>
+      <button onClick={() => exchangeBranches("Sales")}>Sales</button>
+      <button onClick={() => exchangeBranches("Food")}>Food</button>
+      <button onClick={() => exchangeBranches("All")}>All</button>
 
       <div>this are the found companies</div>
 
-      {listOfCompanies.map((oneCompany) => {
+      {filteredOptions.map((oneCompany) => {
         return (
           <div key={oneCompany._id}>
             {" "}

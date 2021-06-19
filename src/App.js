@@ -26,6 +26,7 @@ export default function App() {
       return setIsLoading(false);
     }
     getLoggedIn(accessToken).then((res) => {
+      console.log("USER FROM DB", res);
       if (!res.status) {
         return setIsLoading(false);
       }

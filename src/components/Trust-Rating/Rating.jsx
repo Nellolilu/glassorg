@@ -2,10 +2,11 @@ import axios from "axios";
 import React from "react";
 import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
-import RatingCalc from "./RatingCalc";
+// import RatingCalc from "./RatingCalc";
 
 export default function Rating(props) {
   const { user, company, setCompany } = props;
+  console.log("company in rating", company);
 
   const [form, setForm] = React.useState({
     rating: 3,
@@ -62,6 +63,7 @@ export default function Rating(props) {
 
   return (
     <div>
+      {/* <RatingCalc company={company} /> */}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Rating</label>
