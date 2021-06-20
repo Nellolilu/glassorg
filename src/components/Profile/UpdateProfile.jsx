@@ -28,8 +28,7 @@ export default function UpdateProfile(props) {
       .then((response) => {
         console.log("response:", response);
         authenticate(response.data.user);
-        // DOENST WORK
-        // props.history.push(`${PATHS.HOMEPAGE}`);
+        props.history.push(`${PATHS.PROFILEPAGE}`);
       })
       .catch((err) => {
         console.error(err);

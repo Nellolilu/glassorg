@@ -3,6 +3,7 @@ import React from "react";
 import ImageUpload from "../components/ImageUpload/ImageUpload";
 import ProofUpl from "../components/ImageUpload/ProofUpl";
 import Remember from "../components/Remember/Remember";
+import RatingsListings from "../components/Trust-Rating/RatingsListings";
 import Rating from "../components/Trust-Rating/Rating";
 import RatingCalc from "../components/Trust-Rating/RatingCalc";
 import LoadingComponent from "../components/Loading";
@@ -108,11 +109,17 @@ export default function CompanyPage(props) {
       )}
       <RatingCalc company={singleCompany} />
 
-      <Rating
-        user={user}
-        company={singleCompany}
-        setCompany={setSingleCompany}
-      />
+      {user ? (
+        <Rating
+          user={user}
+          company={singleCompany}
+          setCompany={setSingleCompany}
+        />
+      ) : (
+        <p>log in to leave a rating</p>
+      )}
+
+      <RatingsListings company={singleCompany} />
     </div>
   );
 }

@@ -2,11 +2,9 @@ import axios from "axios";
 import React from "react";
 import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
-// import RatingCalc from "./RatingCalc";
 
 export default function Rating(props) {
   const { user, company, setCompany } = props;
-  console.log("company in rating", company);
 
   const [form, setForm] = React.useState({
     rating: 3,
@@ -28,7 +26,6 @@ export default function Rating(props) {
   function handleSubmit(event) {
     event.preventDefault();
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
-    // console.log(CONSTS.ACCESS_TOKEN);
     axios
       .put(
         `${CONSTS.SERVER_URL}${PATHS.COMPANYROUTE}/${company._id}${PATHS.RATE}`,
@@ -51,19 +48,14 @@ export default function Rating(props) {
   // HANDLE OPTIONS
 
   const [selectedOption, setOptionState] = React.useState(null);
-  // console.log("currently selected", selectedOption);
 
   function handleRadioChange(event) {
     setOptionState(event.target.value);
     setForm({ ...form, [event.target.name]: event.target.value });
   }
 
-  // console.log("form", form);
-  // console.log("company.ratings", company.ratings);
-
   return (
     <div>
-      {/* <RatingCalc company={company} /> */}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Rating</label>
@@ -88,7 +80,7 @@ export default function Rating(props) {
             <input
               value={user.username}
               checked={selectedOption === `${user.username}`}
-              // defaultChecked
+              // TODO defaultChecked would be nice is displayed
               type="radio"
               name="name"
               onChange={handleRadioChange}
@@ -99,41 +91,15 @@ export default function Rating(props) {
               checked={selectedOption === "anonymus"}
               type="radio"
               name="name"
-              // onChange={(e) => {
-              //   setOptionState(e.target.value);
-              // }}
               onChange={handleRadioChange}
             />
           </section>
-          {/* 
-          {new Date().toLocaleString("en-US", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })} */}
 
           <br />
         </div>
 
         <button type="submit">send rating</button>
       </form>
-
-      {!company.ratings ? (
-        <p> is loading</p>
-      ) : (
-        <div>
-          {/* <RatingCalc /> */}
-          {company.ratings.map((rating) => {
-            return (
-              <div key={rating._id}>
-                <p> {rating.date}</p>
-                <p> {rating.name}</p>
-                <p> {rating.comment}</p>
-              </div>
-            );
-          })}
-        </div>
-      )}
     </div>
   );
 }

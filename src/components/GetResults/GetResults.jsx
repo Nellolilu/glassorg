@@ -3,11 +3,15 @@ import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
 import { Link } from "react-router-dom";
 import axios from "axios";
+//
+// import LoadingComponent from "../Loading/index";
 
 export default function GetResults() {
   const [selected, setSelected] = React.useState("All");
   const [allOptions, setAllOptions] = React.useState([]);
   const [inputValue, setInputValue] = React.useState("");
+
+  // const [isLoading, setIsLoading] = React.useState(true);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -43,20 +47,25 @@ export default function GetResults() {
   //GETTING ALL
 
   React.useEffect(() => {
-    const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
-    if (!accessToken) {
-      return;
-    }
+    // setIsLoading(true);
+
     axios
       .get(`${CONSTS.SERVER_URL}${PATHS.RESULTS}`)
       .then((response) => {
-        console.log(response);
+        console.log("response", response);
         setAllOptions(response.data.allCompanies);
       })
       .catch((err) => {
         console.error(err);
       });
+    // .finally(() => {
+    //   setIsLoading(false);
+    // });
   }, []);
+
+  // if (isLoading) {
+  //   return <LoadingComponent />;
+  // }
 
   return (
     <div>

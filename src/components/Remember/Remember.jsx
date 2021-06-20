@@ -6,14 +6,20 @@ import * as CONSTS from "../../utils/consts";
 export default function Remember(props) {
   const { companyId, user, setUser } = props;
 
+  // NEED TO SEPERATE FROM NOT USER
+  let userfollows;
   // INSTEAD OF A USESTATE JUST AN IF IN THE RETURN
-  const userfollows = user.follows.some((e) => e._id === companyId);
+  if (user) {
+    userfollows = user.follows.some((e) => e._id === companyId);
+  }
 
   // FUNCTION REMEMBER
   function doRemember() {
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
+
     if (!accessToken) {
       return;
+      // TODO HERE SEND ERRORMESSAGE : YOU NEED TO BE LOGGED IN
     }
 
     // CHECKING IF IS REMEMBERING
@@ -58,13 +64,15 @@ export default function Remember(props) {
         <div>
           {" "}
           <button onClick={doRemember}>un-remember</button>
-          <h6>check if its working for now: {user.follows.length}</h6>{" "}
+          {/* THE TEST BREAKS THE CODE WHEN NOT LOGGED IN */}
+          {/* <h6>check if its working for now: {user.follows.length}</h6>{" "} */}
         </div>
       ) : (
         <div>
           {" "}
           <button onClick={doRemember}>remember</button>
-          <h6>check if its working for now: {user.follows.length}</h6>{" "}
+          {/* THE TEST BREAKS THE CODE WHEN NOT LOGGED IN */}
+          {/* <h6>check if its working for now: {user.follows.length}</h6>{" "} */}
         </div>
       )}
     </div>
