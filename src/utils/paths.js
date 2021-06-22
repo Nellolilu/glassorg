@@ -15,11 +15,4 @@ export const FORGET = "/dont-remember";
 export const WORKCHAIN = "/workchain";
 export const PUT = "/put";
 export const DELETE = "/delete";
-
 export const RATE = "/rate";
-
-export const BRANCH_PRODUCTION = "/branch=production";
-export const BRANCH_SERVICE = "/branch=service";
-export const BRANCH_SALES = "/branch=sales";
-export const BRANCH_FOOD = "/branch=food";
-export const BRANCH_OTHER = "/branch=other";

@@ -1,12 +1,10 @@
 import axios from "axios";
 import React from "react";
-// import PROFILE_UPDATE_SERVICE from "../../services/profileUpdate";
 import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
 
 export default function UpdatePassword(props) {
   const { authenticate } = props;
-  // const { user, authenticate } = props;
 
   const [form, setForm] = React.useState({
     currentPassword: "",
@@ -40,7 +38,6 @@ export default function UpdatePassword(props) {
       .catch((err) => {
         console.error(err);
       });
-    // AXIOS CALL
   }
 
   return (

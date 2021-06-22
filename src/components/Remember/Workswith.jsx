@@ -5,7 +5,8 @@ import * as CONSTS from "../../utils/consts";
 import LoadingComponent from "../Loading";
 
 export default function Workswith(props) {
-  const { company, user, setUser } = props;
+  const { company, user } = props;
+  // const { company, user, setUser} = props;
   const [usersCompanies, setUsersCompanies] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(true);
   const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
@@ -36,36 +37,30 @@ export default function Workswith(props) {
       .finally(() => {
         setIsLoading(false);
       });
+    // eslint-disable-next-line
   }, []);
 
   if (isLoading) {
     return <LoadingComponent />;
   }
 
+  // INSTEAD OF AN USESTATE // NEEDS TO BE WORKED ON TO VALIDATE WHICH COMPANY
   let workChained;
-
   if (user) {
     // RETURNS AN ARRAY OF TRUES OR FALSES, CAUSE ALL COMPANYS AT A TIME
     const workswithIds = usersCompanies.map((comp) =>
       comp.workswith.map((el) => el._id).includes(company._id)
     );
-    console.log("works with check_", workswithIds[0]);
-    // console.log(
-    //   "nested",
-    //   usersCompanies.map((comp) => comp.workswith.map((el) => el.name))
-    // );
-
+    console.log("works with?", workswithIds[0]);
     workChained = workswithIds[0];
-    console.log("check on already chained", workChained);
 
     if (!workChained) {
       console.log("you dont work with anyone yet");
       console.log("you have to have a company to do that");
+      // TO DO ERRORMESSAGE IF SO
       // return <div>"you have to have a company to do that"</div>;
     }
   }
-
-  // console.log(usersCompanies.workswith.filter((e) => e === company._id));
 
   function doWorkWith() {
     if (!accessToken) {
@@ -112,11 +107,8 @@ export default function Workswith(props) {
 
   return (
     <div>
-      <h4>
-        {/* THE TEST BREAKS THE CODE WHEN NOT LOGGED IN */}
-
-        {/* {usersCompanies.map((comp) => comp.workswith.map((el) => el.name))} */}
-      </h4>
+      {/* THE TEST BREAKS THE CODE WHEN NOT LOGGED IN */}
+      {/* {usersCompanies.map((comp) => comp.workswith.map((el) => el.name))} */}
       {workChained ? (
         <div>
           {" "}

@@ -16,12 +16,10 @@ export default function Remember(props) {
   // FUNCTION REMEMBER
   function doRemember() {
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
-
     if (!accessToken) {
       return;
       // TODO HERE SEND ERRORMESSAGE : YOU NEED TO BE LOGGED IN
     }
-
     // CHECKING IF IS REMEMBERING
     if (user.follows.filter((e) => e._id === companyId).length < 1) {
       // REMEMBER FUNCTION

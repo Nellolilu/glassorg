@@ -14,14 +14,13 @@ import * as PATHS from "../utils/paths";
 export default function CompanyPage(props) {
   const { user, setUser } = props;
   const [singleCompany, setSingleCompany] = React.useState({});
-  console.log("comoany in companypage", singleCompany);
+  // console.log("company in companypage", singleCompany);
   const [listOfAnswers, setListOfAnswers] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   // const [isOwner, setIsOwner] = React.useState(false);
 
   React.useEffect(() => {
     setIsLoading(true);
-
     axios
       .get(
         `${CONSTS.SERVER_URL}${PATHS.COMPANYROUTE}/${props.match.params.companyId}`
@@ -87,8 +86,7 @@ export default function CompanyPage(props) {
 
           <div>
             <h1>This is the Companies Answers</h1>
-            {listOfAnswers.map((oneQA, index) => {
-              // console.log("oneQA)", oneQA);
+            {listOfAnswers.map((oneQA) => {
               return (
                 <div key={oneQA._id}>
                   <p>{oneQA.question.question}</p>

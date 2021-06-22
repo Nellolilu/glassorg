@@ -2,7 +2,6 @@ import React from "react";
 
 export default function RatingCalc(props) {
   const { company } = props;
-  console.log("company in ratingCalc", company);
 
   // CALCULATE RATING
 
@@ -57,10 +56,9 @@ export default function RatingCalc(props) {
 
     // TOTAL RATINGS
     calcRating += publicSum + privateSum + startingValue;
-    console.log("rates", publicSum + privateSum);
-    console.log("starting v", startingValue);
-
-    console.log("total", calcRating);
+    // console.log("rates", publicSum + privateSum);
+    // console.log("starting v", startingValue);
+    // console.log("total", calcRating);
 
     // /// GET AVERAGE
     // PUBLIC COUNTS DOUBLE; INITIAL VALUE COUNTS 2 (to avoid big influence on first rating)

@@ -8,7 +8,6 @@ import * as CREATE_SERVICE from "../services/create";
 import * as CONSTS from "../utils/consts";
 
 export default function CreatePage(props) {
-  // SET FORM
   const [form, setForm] = React.useState({
     name: "",
     url: "",
@@ -17,8 +16,6 @@ export default function CreatePage(props) {
     description: "",
     size: "1-2",
     branch: "Production",
-    // logo: "",
-    // WHY CANT THIS BE EMPTY; HOW TO GET THIS OPTIONAL
   });
 
   // // GET THE BRANCHES & THE QUESTIONS & ANSWERS
@@ -185,8 +182,6 @@ export default function CreatePage(props) {
                             placeholder={oneQuestion.placeholder}
                             maxLength={100}
                             onChange={(event) => {
-                              // console.log(event.target.value);
-                              // console.log(oneQuestion);
                               setAnswers({
                                 ...answers,
                                 [oneQuestion._id]: event.target.value,

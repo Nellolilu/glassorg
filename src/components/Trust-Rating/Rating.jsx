@@ -24,6 +24,10 @@ export default function Rating(props) {
     .map((el) => el.name)
     .includes(user.username);
 
+  // CHECK IF USER IS OWNER
+  const isOwner = company.owner === user._id;
+  console.log("isOwner?", isOwner);
+
   function handleChange(event) {
     setForm({ ...form, [event.target.name]: event.target.value });
   }
@@ -32,9 +36,11 @@ export default function Rating(props) {
     event.preventDefault();
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
 
-    if (alreadyRated) {
-      console.log("ALREADY RATED", alreadyRated);
-      return <div>"you have to have a company to do that"</div>;
+    if (alreadyRated || isOwner) {
+      console.log("ALREADY RATED,", alreadyRated);
+      console.log("OWNER CANT RATE,", alreadyRated);
+      // TODO ERRORMESSAGE ON THIS
+      return <div>"you have to have a company to do thit"</div>;
     }
 
     axios
@@ -57,9 +63,7 @@ export default function Rating(props) {
   }
 
   // HANDLE OPTIONS
-
   const [selectedOption, setOptionState] = React.useState(null);
-
   function handleRadioChange(event) {
     setOptionState(event.target.value);
     setForm({ ...form, [event.target.name]: event.target.value });

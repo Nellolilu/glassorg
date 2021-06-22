@@ -16,8 +16,6 @@ import * as CONSTS from "./utils/consts";
 
 export default function App() {
   const [user, setUser] = useState(null);
-  // const [singleCompany, setSingleCompany] = React.useState({});
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -90,11 +88,6 @@ export default function App() {
           path={PATHS.CREATEPAGE}
           component={CreatePage}
           user={user}
-          // DONT KNOW HOW TO GET THIS:
-          // company={singleCompany}
-          // singleCompany={setSingleCompany}
-
-          // setUser={setUser}
         />
         <NormalRoute
           exact
@@ -102,8 +95,6 @@ export default function App() {
           component={CompanyPage}
           user={user}
           setUser={setUser}
-          // singlecompany={singleCompany}
-          // setSingleCompany={setSingleCompany}
         />
       </Switch>
     </div>

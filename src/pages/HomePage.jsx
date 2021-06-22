@@ -4,7 +4,6 @@ import * as PATHS from "../utils/paths";
 import GetResults from "../components/GetResults/GetResults";
 
 function HomePage() {
-  console.log("reached home");
   return (
     <div className="Home">
       <header className="App-header">

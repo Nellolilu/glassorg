@@ -9,7 +9,6 @@ import LoadingComponent from "../components/Loading";
 import { Link } from "react-router-dom";
 
 export default function ProfilePage(props) {
-  console.log("props", props);
   const { user, authenticate } = props;
   const [listOfCompanies, setListOfCompanies] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -51,12 +50,18 @@ export default function ProfilePage(props) {
     return <LoadingComponent />;
   }
 
+  console.log(
+    "check on workswith ",
+    // listOfCompanies.map((comp) => comp.workswith.map((el) => el.name))
+    listOfCompanies.map((comp) => comp.workswith)
+    // NEEDS TO BE POPULATED TO SEE
+  );
+
   return (
     <div>
       hello {user.username}
       <div>
         <button onClick={profileToggle}>Update Profile</button>
-        {/* {displayUpdateProfile ? <UpdateProfile /> : null} */}
         {displayUpdateProfile && (
           <UpdateProfile user={user} authenticate={authenticate} />
         )}
@@ -105,6 +110,9 @@ export default function ProfilePage(props) {
           </div>
         );
       })}
+      {/* WORKSWITH // SETUP FOR ONCE WORKWITH ALL WORKWITH */}
+      <h4>THIS ARE THE ONES YOU WORKWITH</h4>
+      {listOfCompanies.map((comp) => comp.workswith)}
     </div>
   );
 }
