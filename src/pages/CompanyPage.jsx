@@ -7,6 +7,7 @@ import RatingsListings from "../components/Trust-Rating/RatingsListings";
 import Rating from "../components/Trust-Rating/Rating";
 import RatingCalc from "../components/Trust-Rating/RatingCalc";
 import LoadingComponent from "../components/Loading";
+import Workswith from "../components/Remember/Workswith";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
@@ -16,11 +17,11 @@ export default function CompanyPage(props) {
   console.log("comoany in companypage", singleCompany);
   const [listOfAnswers, setListOfAnswers] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  // const [isOwner, setIsOwner] = React.useState(false);
 
   React.useEffect(() => {
     setIsLoading(true);
-    // LATE FOR FOLLOW & CHAIN?
-    // const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
+
     axios
       .get(
         `${CONSTS.SERVER_URL}${PATHS.COMPANYROUTE}/${props.match.params.companyId}`
@@ -41,6 +42,14 @@ export default function CompanyPage(props) {
     return <LoadingComponent />;
   }
 
+  // OWNER CHECK // AS REACT USE STATE IT BREAKS TO PREVENT INFINITE LOOP // TO DEBUG
+  let isOwner = false;
+  if (user) {
+    if (singleCompany.owner === user._id) {
+      isOwner = true;
+    }
+  }
+
   return (
     <div>
       {!singleCompany.branch ? (
@@ -48,7 +57,7 @@ export default function CompanyPage(props) {
       ) : (
         <div>
           <h1>{singleCompany.name}</h1>
-          {user && (
+          {isOwner && (
             <ImageUpload
               company={singleCompany}
               setCompany={setSingleCompany}
@@ -65,6 +74,7 @@ export default function CompanyPage(props) {
             user={user}
             setUser={setUser}
           />
+          <Workswith company={singleCompany} user={user} setUser={setUser} />
 
           <div>
             <h1>This is the Company Data</h1>
@@ -92,7 +102,7 @@ export default function CompanyPage(props) {
                     />
                   )}
 
-                  {user && (
+                  {isOwner && (
                     <ProofUpl
                       oneQA={oneQA}
                       company={singleCompany}

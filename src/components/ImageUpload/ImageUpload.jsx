@@ -45,7 +45,7 @@ export default function ImageUpload(props) {
         setCompany({ ...company, image: response.data.newImage });
       })
       .catch((err) => {
-        console.log(err.response);
+        console.error(err);
       });
   }
 

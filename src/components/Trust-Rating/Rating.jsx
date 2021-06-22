@@ -19,6 +19,11 @@ export default function Rating(props) {
     user: user._id,
   });
 
+  // CHECK IF USER HAS ALREADY RATED
+  const alreadyRated = company.ratings
+    .map((el) => el.name)
+    .includes(user.username);
+
   function handleChange(event) {
     setForm({ ...form, [event.target.name]: event.target.value });
   }
@@ -26,6 +31,12 @@ export default function Rating(props) {
   function handleSubmit(event) {
     event.preventDefault();
     const accessToken = localStorage.getItem(CONSTS.ACCESS_TOKEN);
+
+    if (alreadyRated) {
+      console.log("ALREADY RATED", alreadyRated);
+      return <div>"you have to have a company to do that"</div>;
+    }
+
     axios
       .put(
         `${CONSTS.SERVER_URL}${PATHS.COMPANYROUTE}/${company._id}${PATHS.RATE}`,

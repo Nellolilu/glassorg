@@ -74,7 +74,7 @@ export default function RatingCalc(props) {
 
   return (
     <div>
-      <h1>This is the average {averageRating}</h1>
+      <h1>This is the average {Math.round(averageRating * 100) / 100}</h1>
     </div>
   );
 }
