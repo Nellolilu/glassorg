@@ -8,6 +8,7 @@ export const CHANGEPWPAGE = "/change-password";
 export const COMPANYROUTE = "/company";
 export const SINGLECOMPANYPAGE = `${COMPANYROUTE}/:companyId`;
 export const IMAGEUPLOAD = "/image-upload";
+export const BG_IMAGEUPLOAD = "/bg-image-upload";
 export const PROOFUPLOAD = "/proof-upload";
 export const RESULTS = "/results";
 export const REMEMBER = "/remember";

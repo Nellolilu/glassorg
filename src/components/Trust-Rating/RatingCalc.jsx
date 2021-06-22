@@ -6,20 +6,19 @@ export default function RatingCalc(props) {
   // CALCULATE RATING
 
   // SET UP FOR BONUS
-  const maxAnswers = 5;
-  const maxProofs = 5;
+  const maxAnswers = 4;
+  const maxProofs = 4;
   let startingValue = 3;
 
   // // GIVES BONUS FOR ALL ANSWERS
-  if (company.answers.length === maxAnswers) {
+  if (company.answers.length >= maxAnswers) {
     startingValue += 0.5;
   }
 
   // SINCE USED ON OTHER PAGES COULD MAKE THIS GLOBALLY VIA PROPS (ALSO THE SINGLE COMP:::)
   const proofCount = company.answers.filter((el) => el.proof).length;
-
   // GIVES BONUS FOR ALL PROOFED
-  if (proofCount === maxProofs) {
+  if (proofCount >= maxProofs) {
     startingValue += 0.5;
   }
 

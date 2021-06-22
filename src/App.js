@@ -95,6 +95,7 @@ export default function App() {
           component={CompanyPage}
           user={user}
           setUser={setUser}
+          authenticate={authenticate}
         />
       </Switch>
     </div>

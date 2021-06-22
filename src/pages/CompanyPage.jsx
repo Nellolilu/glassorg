@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import ImageUpload from "../components/ImageUpload/ImageUpload";
+import BgImageUpload from "../components/ImageUpload/BgImageUpload";
 import ProofUpl from "../components/ImageUpload/ProofUpl";
 import Remember from "../components/Remember/Remember";
 import RatingsListings from "../components/Trust-Rating/RatingsListings";
@@ -8,13 +9,14 @@ import Rating from "../components/Trust-Rating/Rating";
 import RatingCalc from "../components/Trust-Rating/RatingCalc";
 import LoadingComponent from "../components/Loading";
 import Workswith from "../components/Remember/Workswith";
+import DeleteCompany from "../components/Profile/DeleteCompany";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 
 export default function CompanyPage(props) {
-  const { user, setUser } = props;
+  const { user, setUser, authenticate } = props;
   const [singleCompany, setSingleCompany] = React.useState({});
-  // console.log("company in companypage", singleCompany);
+  console.log("company in companypage", singleCompany);
   const [listOfAnswers, setListOfAnswers] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   // const [isOwner, setIsOwner] = React.useState(false);
@@ -48,6 +50,7 @@ export default function CompanyPage(props) {
       isOwner = true;
     }
   }
+  console.log("AUTH", authenticate);
 
   return (
     <div>
@@ -65,6 +68,18 @@ export default function CompanyPage(props) {
 
           <img
             src={singleCompany.image}
+            style={{ width: "300px" }}
+            alt="Dayman"
+          />
+          {isOwner && (
+            <BgImageUpload
+              company={singleCompany}
+              setCompany={setSingleCompany}
+            />
+          )}
+
+          <img
+            src={singleCompany.bgImage}
             style={{ width: "300px" }}
             alt="Dayman"
           />
@@ -126,8 +141,8 @@ export default function CompanyPage(props) {
       ) : (
         <p>log in to leave a rating</p>
       )}
-
       <RatingsListings company={singleCompany} />
+      {isOwner && <DeleteCompany company={singleCompany} />}
     </div>
   );
 }

@@ -4,7 +4,9 @@ import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
 
 export default function UpdatePassword(props) {
-  const { authenticate } = props;
+  const { authenticate, displayUpdatePassword, setDisplayUpdatePassword } =
+    props;
+  console.log("props", props);
 
   const [form, setForm] = React.useState({
     currentPassword: "",
@@ -32,8 +34,7 @@ export default function UpdatePassword(props) {
       .then((response) => {
         console.log("response", response);
         authenticate(response.data.user);
-        // DOENST WORK
-        // props.history.push(`${PATHS.HOMEPAGE}`);
+        setDisplayUpdatePassword(!displayUpdatePassword);
       })
       .catch((err) => {
         console.error(err);

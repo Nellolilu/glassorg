@@ -4,7 +4,9 @@ import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
 
 export default function UpdateProfile(props) {
-  const { user, authenticate } = props;
+  // console.log("props", props);
+  const { user, authenticate, displayUpdateProfile, setDisplayUpdateProfile } =
+    props;
   const [form, setForm] = React.useState({
     username: user.username,
     email: user.email,
@@ -28,7 +30,8 @@ export default function UpdateProfile(props) {
       .then((response) => {
         console.log("response:", response);
         authenticate(response.data.user);
-        props.history.push(`${PATHS.PROFILEPAGE}`);
+        // TOGGLE SET BACK TO FALSE
+        setDisplayUpdateProfile(!displayUpdateProfile);
       })
       .catch((err) => {
         console.error(err);

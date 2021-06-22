@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 
 export default function ProfilePage(props) {
   const { user, authenticate } = props;
+  console.log("p in p", props);
   const [listOfCompanies, setListOfCompanies] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [displayUpdateProfile, setDisplayUpdateProfile] = React.useState(false);
@@ -52,8 +53,8 @@ export default function ProfilePage(props) {
 
   console.log(
     "check on workswith ",
-    // listOfCompanies.map((comp) => comp.workswith.map((el) => el.name))
-    listOfCompanies.map((comp) => comp.workswith)
+    listOfCompanies.map((comp) => comp.workswith.map((el) => el.name))
+    // listOfCompanies.map((comp) => comp.workswith)
     // NEEDS TO BE POPULATED TO SEE
   );
 
@@ -63,13 +64,23 @@ export default function ProfilePage(props) {
       <div>
         <button onClick={profileToggle}>Update Profile</button>
         {displayUpdateProfile && (
-          <UpdateProfile user={user} authenticate={authenticate} />
+          <UpdateProfile
+            user={user}
+            authenticate={authenticate}
+            setDisplayUpdateProfile={setDisplayUpdateProfile}
+            displayUpdateProfile={displayUpdateProfile}
+          />
         )}
 
         <br />
         <button onClick={passwordToggle}>Update Password</button>
         {displayUpdatePassword ? (
-          <UpdatePassword user={user} authenticate={authenticate} />
+          <UpdatePassword
+            user={user}
+            authenticate={authenticate}
+            displayUpdatePassword={displayUpdatePassword}
+            setDisplayUpdatePassword={setDisplayUpdatePassword}
+          />
         ) : null}
 
         <br />
@@ -112,7 +123,11 @@ export default function ProfilePage(props) {
       })}
       {/* WORKSWITH // SETUP FOR ONCE WORKWITH ALL WORKWITH */}
       <h4>THIS ARE THE ONES YOU WORKWITH</h4>
-      {listOfCompanies.map((comp) => comp.workswith)}
+      {listOfCompanies.map((comp) =>
+        comp.workswith.map((coworker) => {
+          return <div key={coworker._id}>{coworker.name}</div>;
+        })
+      )}
     </div>
   );
 }
