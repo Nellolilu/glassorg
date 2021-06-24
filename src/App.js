@@ -24,7 +24,6 @@ export default function App() {
       return setIsLoading(false);
     }
     getLoggedIn(accessToken).then((res) => {
-      console.log("USER FROM DB", res);
       if (!res.status) {
         return setIsLoading(false);
       }
@@ -60,9 +59,16 @@ export default function App() {
   }
   return (
     <div className="App">
+      {/* Navbar pulled out, because of styling reasons bg image */}
       <Navbar handleLogout={handleLogout} user={user} />
       <Switch>
-        <NormalRoute exact path={PATHS.HOMEPAGE} component={HomePage} />
+        <NormalRoute
+          exact
+          path={PATHS.HOMEPAGE}
+          component={HomePage}
+          handleLogout={handleLogout}
+          user={user}
+        />
         <NormalRoute
           exact
           path={PATHS.SIGNUPPAGE}

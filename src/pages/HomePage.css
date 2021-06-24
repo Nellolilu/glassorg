@@ -1,0 +1,266 @@
+.bg-Image {
+  background: url("../images/cowork.png") no-repeat;
+  height: 65vh;
+  position: relative;
+}
+
+.App-header {
+  min-height: 437px;
+  height: 100%;
+  padding-left: 101px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.App-header h1 {
+  padding-top: 60px;
+  color: #ffffff;
+  width: 777px;
+  font-weight: 700;
+  font-size: 64px;
+  letter-spacing: 0.2em;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+.App-header p {
+  color: #ffffff;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  width: 274px;
+}
+
+.search-bar {
+  background-color: #7335e5;
+  height: 240px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.search-bar img {
+  width: 80px;
+  height: 80px;
+  margin-right: 50px;
+}
+
+.search-bar input {
+  width: 1200px;
+  height: 40px;
+  box-sizing: border-box;
+  border: none;
+  background-color: #7335e5;
+  border-bottom: 2px solid #ffffff;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 47px;
+  color: #ffffff;
+}
+
+.search-bar input::placeholder {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 68px;
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+.btn {
+  width: 160px;
+  height: 60px;
+  background: #f1ebfc;
+  border-radius: 30px;
+  border-style: none;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  text-align: center;
+  color: #7335e5;
+  margin: 0px 10px;
+}
+
+.btn:hover {
+  background-color: #7335e5;
+  color: #f1ebfc;
+}
+
+.btn-active {
+  width: 160px;
+  height: 60px;
+  background: #7335e5;
+  border-radius: 30px;
+  border-style: none;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  text-align: center;
+  color: #f1ebfc;
+  margin: 0px 10px;
+}
+
+.btn-active:hover {
+  background-color: white;
+  color: #7335e5;
+}
+
+.filter span {
+  font-family: Be Vietnam;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  text-align: right;
+
+  color: #000000;
+
+  opacity: 0.4;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 46px 0px 109px;
+}
+
+.filter-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-options .btn .btn-active {
+  margin: 0px 30px;
+}
+
+.companies-container {
+  margin-left: 101px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.companies-container img {
+  width: 400px;
+  background: #353535;
+  border-radius: 10px;
+  height: 260px;
+}
+.company-box {
+  width: 400px;
+  height: 518px;
+  margin: 56px 20px;
+}
+
+.company-box p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+
+  color: #000000;
+
+  opacity: 0.4;
+  margin: 10px 0px;
+}
+
+.company-box h4 {
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 32px;
+  margin: 0px;
+  color: #000000;
+}
+
+.company-box .rating-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.company-box .rating-box p {
+  margin-right: 15px;
+}
+
+.add-box {
+  background-color: #f1ebfc;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 197px 0px;
+}
+.add-left {
+  width: 600px;
+  height: 640px;
+  margin-left: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.add-box h1 {
+  color: #7335e5;
+  width: 590px;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 100%;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.add-box p {
+  color: #7335e5;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 150%;
+}
+
+.add-right {
+  margin-right: 100px;
+  height: 640px;
+  width: 600px;
+}
+
+.add-box span {
+  font-weight: 800;
+}
+
+.place-btn {
+  margin-bottom: 50px;
+  width: 200px;
+}
+
+.footer {
+  background-color: #7335e5;
+  padding: 48px 101px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-links p {
+  margin: 0px 10px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.features {
+  margin: 50px 101px;
+  line-height: 32px;
+}

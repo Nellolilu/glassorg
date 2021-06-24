@@ -3,6 +3,7 @@ import * as CONSTS from "../../utils/consts";
 import * as PATHS from "../../utils/paths";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import lenseBtn from "../../images/lense-btn.png";
 
 export default function GetResults() {
   const [selected, setSelected] = React.useState("All");
@@ -56,38 +57,79 @@ export default function GetResults() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="search-bar">
         <input
           type="text"
-          placeholder="search"
+          placeholder="Search for places, companies, local stores, ..."
           value={inputValue}
           onChange={handleInputChange}
         ></input>
-        <button>search</button>
+        <img src={lenseBtn} alt="search-icon" className="lense-btn" />
       </form>
+      <div className="filter">
+        <button
+          onClick={() => exchangeBranches("All")}
+          className={selected === "All" ? "btn-active" : "btn"}
+        >
+          Show all
+        </button>
+        <div className="filter-options">
+          <span>filter by branch</span>
+          <button
+            onClick={() => exchangeBranches("Service")}
+            className={selected === "Service" ? "btn-active" : "btn"}
+          >
+            Service
+          </button>
+          <button
+            onClick={() => exchangeBranches("Production")}
+            className={selected === "Production" ? "btn-active" : "btn"}
+          >
+            Production
+          </button>
+          <button
+            onClick={() => exchangeBranches("Sales")}
+            className={selected === "Sales" ? "btn-active" : "btn"}
+          >
+            Sales
+          </button>
+          <button
+            onClick={() => exchangeBranches("Food")}
+            className={selected === "Food" ? "btn-active" : "btn"}
+          >
+            Food
+          </button>
+          <button
+            onClick={() => exchangeBranches("Other")}
+            className={selected === "Other" ? "btn-active" : "btn"}
+          >
+            everything else
+          </button>{" "}
+        </div>
+      </div>
 
-      <button onClick={() => exchangeBranches("Service")}>Service</button>
-      <button onClick={() => exchangeBranches("Other")}>Other</button>
-      <button onClick={() => exchangeBranches("Production")}>Production</button>
-      <button onClick={() => exchangeBranches("Sales")}>Sales</button>
-      <button onClick={() => exchangeBranches("Food")}>Food</button>
-      <button onClick={() => exchangeBranches("All")}>All</button>
-
-      <div>this are the found companies</div>
-
-      {filteredOptions.map((oneCompany) => {
-        return (
-          <div key={oneCompany._id}>
-            {" "}
-            <Link to={`${PATHS.COMPANYROUTE}/${oneCompany._id}`}>
-              <h4>{oneCompany.name}</h4>
-            </Link>
-            <p>{oneCompany.url}</p>
-            <p>answered:{oneCompany.answers.length}</p>
-            <p>proofed:{oneCompany.answers.filter((el) => el.proof).length}</p>
-          </div>
-        );
-      })}
+      <div className="companies-container">
+        {filteredOptions.map((oneCompany) => {
+          return (
+            <div key={oneCompany._id} className="company-box">
+              {" "}
+              <img src={oneCompany.image} alt="company-logo" />
+              <p>{oneCompany.branch.branch}</p>
+              <Link to={`${PATHS.COMPANYROUTE}/${oneCompany._id}`}>
+                <h4>{oneCompany.name}</h4>
+              </Link>
+              <p>{oneCompany.adress}</p>
+              <div className="rating-box">
+                <p>{oneCompany.answers.length}answered</p>
+                <p>
+                  {oneCompany.answers.filter((el) => el.proof).length}proofed
+                </p>
+                <p>trust-rated</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -112,13 +112,17 @@ export default function Workswith(props) {
       {workChained ? (
         <div>
           {" "}
-          <button onClick={doWorkWith}>dont chain</button>
+          <button onClick={doWorkWith} className="btn">
+            coworkers
+          </button>
           {!workChained && <div>"you have to have a company to do thot"</div>}
         </div>
       ) : (
         <div>
           {" "}
-          <button onClick={doWorkWith}>workchain</button>
+          <button onClick={doWorkWith} className="btn">
+            coworker?
+          </button>
         </div>
       )}
     </div>

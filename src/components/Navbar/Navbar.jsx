@@ -2,39 +2,41 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import * as PATHS from "../../utils/paths";
+import logo from "../../images/Logo.png";
 
 const Navbar = (props) => {
   return (
     <nav>
-      {props.user ? (
-        <>
-          <Link to={PATHS.HOMEPAGE} className="nav__projectName">
-            WELCOME, {props.user.username}
-          </Link>
-        </>
-      ) : (
-        <Link to={PATHS.HOMEPAGE} className="nav__projectName">
-          WELCOME, want to log in?
+      <div className="header-logo">
+        <Link to={PATHS.HOMEPAGE}>
+          {" "}
+          <img src={logo} className="logo-header" alt="logo" />
         </Link>
-      )}
-
-      <div className="nav__authLinks">
+      </div>
+      <div>
+        <Link to={PATHS.HOMEPAGE} className="navLinks">
+          About
+        </Link>
+      </div>
+      <div>
         {props.user ? (
           <>
-            <Link to={PATHS.PROFILEPAGE} className="profile-link">
+            <Link to={PATHS.PROFILEPAGE} className="navLinks purple">
               Profile
             </Link>
-            <button className="nav-logoutbtn" onClick={props.handleLogout}>
+            <button className="btn-active" onClick={props.handleLogout}>
               Logout
             </button>
           </>
         ) : (
           <>
-            <Link to={PATHS.SIGNUPPAGE} className="authLink">
+            <Link to={PATHS.SIGNUPPAGE} className="navLinks purple">
               Signup
             </Link>
-            <Link to={PATHS.LOGINPAGE} className="authLink">
-              Log In
+            <Link to={PATHS.LOGINPAGE}>
+              <button className="btn-active" onClick={props.handleLogout}>
+                Login
+              </button>
             </Link>
           </>
         )}

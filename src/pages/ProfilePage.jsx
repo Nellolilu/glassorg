@@ -1,12 +1,14 @@
 import React from "react";
 import "../App.css";
+import "./Profile.css";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 import * as PROFILE_SERVICE from "../services/profile";
 import UpdateProfile from "../components/Profile/UpdateProfile";
-import UpdatePassword from "../components/Profile/UpdatePassword";
+// import UpdatePassword from "../components/Profile/UpdatePassword";
 import LoadingComponent from "../components/Loading";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer/Footer";
 
 export default function ProfilePage(props) {
   const { user, authenticate } = props;
@@ -14,18 +16,27 @@ export default function ProfilePage(props) {
   const [listOfCompanies, setListOfCompanies] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [displayUpdateProfile, setDisplayUpdateProfile] = React.useState(false);
-  const [displayUpdatePassword, setDisplayUpdatePassword] =
-    React.useState(false);
+  // const [displayUpdatePassword, setDisplayUpdatePassword] =
+  //   React.useState(false);
+  const [followDisplay, setFollowDisplay] = React.useState(false);
+  const [workchainDisplay, setWorkchainDisplay] = React.useState(false);
 
   // TOGGLE UPDATING USER FUNCTIONS
   function profileToggle() {
     setDisplayUpdateProfile(!displayUpdateProfile);
   }
 
-  function passwordToggle() {
-    setDisplayUpdatePassword(!displayUpdatePassword);
+  // function passwordToggle() {
+  //   setDisplayUpdatePassword(!displayUpdatePassword);
+  // }
+
+  function followToggle() {
+    setFollowDisplay(!followDisplay);
   }
 
+  function workToggle() {
+    setWorkchainDisplay(!workchainDisplay);
+  }
   // RECEIVE USER INFO
   React.useEffect(() => {
     setIsLoading(true);
@@ -51,83 +62,167 @@ export default function ProfilePage(props) {
     return <LoadingComponent />;
   }
 
-  console.log(
-    "check on workswith ",
-    listOfCompanies.map((comp) => comp.workswith.map((el) => el.name))
-    // listOfCompanies.map((comp) => comp.workswith)
-    // NEEDS TO BE POPULATED TO SEE
-  );
-
+  // console.log(
+  //   "check on workswith ",
+  //   listOfCompanies.map((comp) => comp.workswith.map((el) => el.name))
+  //   // listOfCompanies.map((comp) => comp.workswith)
+  //   // NEEDS TO BE POPULATED TO SEE
+  // );
+  console.log(followDisplay);
   return (
     <div>
-      hello {user.username}
-      <div>
-        <button onClick={profileToggle}>Update Profile</button>
-        {displayUpdateProfile && (
-          <UpdateProfile
-            user={user}
-            authenticate={authenticate}
-            setDisplayUpdateProfile={setDisplayUpdateProfile}
-            displayUpdateProfile={displayUpdateProfile}
-          />
-        )}
-
-        <br />
-        <button onClick={passwordToggle}>Update Password</button>
-        {displayUpdatePassword ? (
-          <UpdatePassword
-            user={user}
-            authenticate={authenticate}
-            displayUpdatePassword={displayUpdatePassword}
-            setDisplayUpdatePassword={setDisplayUpdatePassword}
-          />
-        ) : null}
-
-        <br />
-        <button>Delete Account</button>
+      <div className="profile-box">
+        <div className="profile-box-left">
+          <h1 className="name">Hi {user.username}!</h1>
+          <div className="profile-btns">
+            <button
+              onClick={profileToggle}
+              className={!displayUpdateProfile ? "btn-gray" : "btn-active-gray"}
+            >
+              Update Profile
+            </button>
+            {displayUpdateProfile && (
+              <UpdateProfile
+                user={user}
+                authenticate={authenticate}
+                setDisplayUpdateProfile={setDisplayUpdateProfile}
+                displayUpdateProfile={displayUpdateProfile}
+              />
+            )}
+            {/* <button onClick={passwordToggle} className="btn">
+              Update Password
+            </button>
+            {displayUpdatePassword ? (
+              <UpdatePassword
+                user={user}
+                authenticate={authenticate}
+                displayUpdatePassword={displayUpdatePassword}
+                setDisplayUpdatePassword={setDisplayUpdatePassword}
+              />
+            ) : null} */}
+            <button className="btn-gray delete">Delete Account</button>
+          </div>
+          <br />
+        </div>
+        <div className="profile-box-rigth">
+          {/* COMPANIES OWNED */}
+          <div className="companies-container">
+            {listOfCompanies.map((oneCompany) => {
+              return (
+                <div key={oneCompany._id} className="company-box">
+                  {" "}
+                  <img src={oneCompany.image} alt="company-logo" />
+                  <p>{oneCompany.branch.branch}</p>
+                  <Link to={`${PATHS.COMPANYROUTE}/${oneCompany._id}`}>
+                    <h4>{oneCompany.name}</h4>
+                  </Link>
+                  <p>{oneCompany.adress}</p>
+                  <div className="rating-box">
+                    <p>{oneCompany.answers.length}answered</p>
+                    <p>
+                      {oneCompany.answers.filter((el) => el.proof).length}
+                      proofed
+                    </p>
+                    <p>trust-rated</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
-      <br />
-      {/* COMPANIES OWNED */}
-      <div>this is your created company</div>
-      {listOfCompanies.map((oneCompany) => {
-        return (
-          <div key={oneCompany._id}>
-            {" "}
-            <Link to={`${PATHS.COMPANYROUTE}/${oneCompany._id}`}>
-              <h4>{oneCompany.name}</h4>
-            </Link>
-            <p>{oneCompany.url}</p>
-            <p>answered:{oneCompany.answers.length}</p>
-            <p>
-              proofed:{" "}
-              {oneCompany.answers.reduce((counter, obj) => {
-                if (obj.proof) {
-                  if (obj.proof.length > 0) return (counter += 1);
-                }
-                return counter;
-              }, 0)}
-            </p>
+      <div className="dash"></div>
+      <div className="chain-box">
+        <button
+          onClick={followToggle}
+          className={!followDisplay ? "btn-chain" : "btn-chain-active"}
+        >
+          {followDisplay ? (
+            <h4>You follow:</h4>
+          ) : (
+            <h4> &gt; You follow {user.follows.length} companies</h4>
+          )}
+        </button>
+
+        {/* FOLLOWS */}
+
+        {followDisplay && (
+          <div className="companies-container">
+            {user.follows.map((oneCompany) => {
+              return (
+                <div key={oneCompany._id} className="company-box">
+                  {" "}
+                  <img src={oneCompany.image} alt="company-logo" />
+                  <p>{oneCompany.branch.branch}</p>
+                  <Link to={`${PATHS.COMPANYROUTE}/${oneCompany._id}`}>
+                    <h4>{oneCompany.name}</h4>
+                  </Link>
+                  <p>{oneCompany.adress}</p>
+                  <div className="rating-box">
+                    <p>{oneCompany.answers.length}answered</p>
+                    <p>
+                      {oneCompany.answers.filter((el) => el.proof).length}
+                      proofed
+                    </p>
+                    <p>trust-rated</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        );
-      })}
-      {/* FOLLOWS */}
-      <h4>THIS ARE THE ONES YOU FOLLOW</h4>
-      {user.follows.map((oneCompany) => {
-        return (
-          <div key={oneCompany._id}>
-            <Link to={`${PATHS.COMPANYROUTE}/${oneCompany._id}`}>
-              <h4>{oneCompany.name}</h4>
-            </Link>{" "}
+        )}
+      </div>
+      <div className="dash"></div>
+
+      <div className="chain-box">
+        <button
+          onClick={workToggle}
+          className={!workchainDisplay ? "btn-chain" : "btn-chain-active"}
+        >
+          {workchainDisplay ? (
+            <h4>You work with:</h4>
+          ) : (
+            <h4>
+              {" "}
+              &gt; You work with{" "}
+              {listOfCompanies.map((comp) => comp.workswith.length)} companies
+            </h4>
+          )}
+        </button>
+
+        {/* WORKSWITH */}
+
+        {workchainDisplay && (
+          <div className="companies-container">
+            {listOfCompanies.map((comp) =>
+              comp.workswith.map((coworker) => {
+                return (
+                  <div key={coworker._id} className="company-box">
+                    {" "}
+                    <img src={coworker.image} alt="company-logo" />
+                    <p>{coworker.branch.branch}</p>
+                    <Link to={`${PATHS.COMPANYROUTE}/${coworker._id}`}>
+                      <h4>{coworker.name}</h4>
+                    </Link>
+                    <p>{coworker.adress}</p>
+                    <div className="rating-box">
+                      <p>{coworker.answers.length}answered</p>
+                      <p>
+                        {coworker.answers.filter((el) => el.proof).length}
+                        proofed
+                      </p>
+                      <p>trust-rated</p>
+                    </div>
+                  </div>
+                );
+              })
+            )}
           </div>
-        );
-      })}
-      {/* WORKSWITH // SETUP FOR ONCE WORKWITH ALL WORKWITH */}
-      <h4>THIS ARE THE ONES YOU WORKWITH</h4>
-      {listOfCompanies.map((comp) =>
-        comp.workswith.map((coworker) => {
-          return <div key={coworker._id}>{coworker.name}</div>;
-        })
-      )}
+        )}
+      </div>
+      <div className="dash white"></div>
+
+      <Footer />
     </div>
   );
 }

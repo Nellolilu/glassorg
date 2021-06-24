@@ -1,0 +1,66 @@
+.company-img {
+  margin-top: 500px;
+  margin-left: 101px;
+  width: 400px;
+  background: #353535;
+  border-radius: 10px;
+  height: 260px;
+}
+
+.chain-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 101px;
+}
+
+.company-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 100px;
+}
+.c-head {
+  width: 900px;
+  padding-top: 100px;
+  padding-left: 200px;
+}
+
+.c-head h1 {
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.c-head p {
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.c-head h4 {
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 47px;
+
+  color: #000000;
+}
+
+.c-infos {
+  padding-left: 105px;
+  padding-top: 150px;
+}
+
+.answers-box {
+  background-color: #f1ebfc;
+  padding-left: 400px;
+  padding-top: 120px;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; */
+}

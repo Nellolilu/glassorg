@@ -12,6 +12,7 @@ import Workswith from "../components/Remember/Workswith";
 import DeleteCompany from "../components/Profile/DeleteCompany";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
+import "./CompanyPage.css";
 
 export default function CompanyPage(props) {
   const { user, setUser, authenticate } = props;
@@ -58,54 +59,70 @@ export default function CompanyPage(props) {
         <h3>...loading</h3>
       ) : (
         <div>
-          <h1>{singleCompany.name}</h1>
-          {isOwner && (
-            <ImageUpload
-              company={singleCompany}
-              setCompany={setSingleCompany}
+          <div
+            style={{
+              backgroundImage: `url(${singleCompany.bgImage})`,
+              backgroundRepeat: "no-repeat",
+              height: "65vh",
+            }}
+            className="bg-com-Image"
+          >
+            <img
+              src={singleCompany.image}
+              alt="Company-Logo"
+              className="company-img"
             />
-          )}
 
-          <img
-            src={singleCompany.image}
-            style={{ width: "300px" }}
-            alt="Dayman"
-          />
-          {isOwner && (
-            <BgImageUpload
-              company={singleCompany}
-              setCompany={setSingleCompany}
+            {isOwner && (
+              <ImageUpload
+                company={singleCompany}
+                setCompany={setSingleCompany}
+              />
+            )}
+
+            {isOwner && (
+              <BgImageUpload
+                company={singleCompany}
+                setCompany={setSingleCompany}
+              />
+            )}
+          </div>
+          <div className="chain-header">
+            <Remember
+              companyId={singleCompany._id}
+              user={user}
+              setUser={setUser}
             />
-          )}
-
-          <img
-            src={singleCompany.bgImage}
-            style={{ width: "300px" }}
-            alt="Dayman"
-          />
-          <Remember
-            companyId={singleCompany._id}
-            user={user}
-            setUser={setUser}
-          />
-          <Workswith company={singleCompany} user={user} setUser={setUser} />
-
-          <div>
-            <h1>This is the Company Data</h1>
-            <p>{singleCompany.adress}</p>
-            <p>{singleCompany.url}</p>
-            <p>Company Size: {singleCompany.size}</p>
-            <p>What they do {singleCompany.description}</p>
-            <p>Branch: {singleCompany.branch.branch}</p>
+            <Workswith company={singleCompany} user={user} setUser={setUser} />
           </div>
 
-          <div>
-            <h1>This is the Companies Answers</h1>
+          <div className="company-header">
+            <div className="c-infos">
+              <p>{singleCompany.adress}</p>
+              <p>{singleCompany.url}</p>
+              <p>Company Size: {singleCompany.size}</p>
+            </div>
+
+            <div className="c-head">
+              <p>Branch: {singleCompany.branch.branch}</p>
+              <h1>{singleCompany.name}</h1>
+              <h4>{singleCompany.description}</h4>
+            </div>
+          </div>
+
+          <h1>answered</h1>
+
+          <div className="answers-box">
             {listOfAnswers.map((oneQA) => {
               return (
                 <div key={oneQA._id}>
-                  <p>{oneQA.question.question}</p>
-                  <p>{oneQA.answer}</p>
+                  <div className="questions">
+                    {" "}
+                    <p>{oneQA.question.question}</p>
+                  </div>
+                  <div className="answers">
+                    <p>{oneQA.answer}</p>
+                  </div>
 
                   {oneQA.proof && (
                     <img

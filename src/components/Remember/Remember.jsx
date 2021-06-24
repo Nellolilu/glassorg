@@ -61,14 +61,18 @@ export default function Remember(props) {
       {userfollows ? (
         <div>
           {" "}
-          <button onClick={doRemember}>un-remember</button>
+          <button onClick={doRemember} className="btn">
+            following
+          </button>
           {/* THE TEST BREAKS THE CODE WHEN NOT LOGGED IN */}
           {/* <h6>check if its working for now: {user.follows.length}</h6>{" "} */}
         </div>
       ) : (
         <div>
           {" "}
-          <button onClick={doRemember}>remember</button>
+          <button onClick={doRemember} className="btn">
+            follow?
+          </button>
           {/* THE TEST BREAKS THE CODE WHEN NOT LOGGED IN */}
           {/* <h6>check if its working for now: {user.follows.length}</h6>{" "} */}
         </div>
