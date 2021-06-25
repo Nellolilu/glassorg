@@ -10,9 +10,9 @@ function HomePage() {
     <div>
       <div className="bg-Image">
         <header className="App-header">
-          <h1> Eat good, look good, work good. </h1>
+          <h1> Eat good, feel good, work good. </h1>
           <p>
-            Find Companies that care. See, what they really do about it and who
+            Find companies that care. See, what they really do about it and who
             they are working with.{" "}
           </p>
         </header>

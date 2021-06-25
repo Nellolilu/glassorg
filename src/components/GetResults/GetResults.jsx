@@ -123,12 +123,12 @@ export default function GetResults() {
               <div className="rating-box">
                 <p>
                   answered <br />
-                  {Math.round((oneCompany.answers.length / 6) * 100)} %
+                  {Math.round((oneCompany.answers.length / 5) * 100)} %
                 </p>
                 <p>
                   proved <br />
                   {Math.round(
-                    (oneCompany.answers.filter((el) => el.proof).length / 6) *
+                    (oneCompany.answers.filter((el) => el.proof).length / 5) *
                       100
                   )}{" "}
                   %

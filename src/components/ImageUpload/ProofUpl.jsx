@@ -56,11 +56,13 @@ export default function ProofUpl(props) {
   }
 
   return (
-    <div>
-      <p>upload new pic</p>
+    <div className="proof-upload">
+      <p>upload new image for proof</p>
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleChange} />
-        <button type="submit">send changes</button>
+        <button type="submit" className="btn-submit">
+          send changes
+        </button>
       </form>
     </div>
   );

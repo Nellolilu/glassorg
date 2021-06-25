@@ -23,6 +23,11 @@
   flex-direction: row;
 }
 
+.flex-updater {
+  display: flex;
+  flex-direction: column;
+}
+
 .btn-gray {
   width: 185px;
   height: 60px;

@@ -16,6 +16,7 @@ export default function DeleteCompany(props) {
     axios
       .post(
         `${CONSTS.SERVER_URL}${PATHS.COMPANYROUTE}/${company._id}${PATHS.DELETE}`,
+        { company },
         {
           headers: { authorization: accessToken },
         }
@@ -28,7 +29,7 @@ export default function DeleteCompany(props) {
 
   return (
     <div>
-      <button onClick={deleteListing} className="btn-gray elete">
+      <button onClick={deleteListing} className="btn-gray delete">
         {" "}
         Delete
       </button>

@@ -3,6 +3,7 @@ import { login } from "../services/auth";
 import "./Signup";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
+import "./Login.css";
 
 export default function LogIn({ authenticate, history }) {
   const [form, setForm] = useState({
@@ -36,7 +37,7 @@ export default function LogIn({ authenticate, history }) {
   }
 
   return (
-    <div>
+    <div className="login-container">
       <h1>Log In</h1>
       <form onSubmit={handleFormSubmission} className="signup__form">
         <label htmlFor="input-email">Email</label>
@@ -55,7 +56,7 @@ export default function LogIn({ authenticate, history }) {
           id="input-password"
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="password"
           value={password}
           onChange={handleInputChange}
           required
@@ -69,7 +70,7 @@ export default function LogIn({ authenticate, history }) {
           </div>
         )}
 
-        <button className="button__submit" type="submit">
+        <button className="btn-submit" type="submit">
           Submit
         </button>
       </form>

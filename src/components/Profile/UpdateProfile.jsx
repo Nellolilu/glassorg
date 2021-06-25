@@ -39,7 +39,7 @@ export default function UpdateProfile(props) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="signup__form">
       <div>
         <label>Username</label>
         <input
@@ -58,7 +58,9 @@ export default function UpdateProfile(props) {
           onChange={handleChange}
         />
       </div>
-      <button type="submit">Update your profile</button>
+      <button type="submit" className="btn-submit">
+        Update profile
+      </button>
     </form>
   );
 }

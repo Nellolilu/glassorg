@@ -75,20 +75,25 @@ export default function ProfilePage(props) {
         <div className="profile-box-left">
           <h1 className="name">Hi {user.username}!</h1>
           <div className="profile-btns">
-            <button
-              onClick={profileToggle}
-              className={!displayUpdateProfile ? "btn-gray" : "btn-active-gray"}
-            >
-              Update Profile
-            </button>
-            {displayUpdateProfile && (
-              <UpdateProfile
-                user={user}
-                authenticate={authenticate}
-                setDisplayUpdateProfile={setDisplayUpdateProfile}
-                displayUpdateProfile={displayUpdateProfile}
-              />
-            )}
+            <div className="flex-updater">
+              <button
+                onClick={profileToggle}
+                className={
+                  !displayUpdateProfile ? "btn-gray" : "btn-active-gray"
+                }
+              >
+                Update Profile
+              </button>
+              {displayUpdateProfile && (
+                <UpdateProfile
+                  user={user}
+                  authenticate={authenticate}
+                  setDisplayUpdateProfile={setDisplayUpdateProfile}
+                  displayUpdateProfile={displayUpdateProfile}
+                />
+              )}
+            </div>
+
             {/* <button onClick={passwordToggle} className="btn">
               Update Password
             </button>

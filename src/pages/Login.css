@@ -1,0 +1,39 @@
+.login-container {
+  margin: 101px;
+}
+
+.login-container h1 {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 100%;
+  color: #000000;
+}
+
+.signup__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 50px 300px;
+}
+
+.signup__form input {
+  width: 600px;
+  height: 60px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #7335e5;
+  color: #7335e5;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 47px;
+  margin: 10px 0px 50px;
+}
+
+.signup__form input::placeholder {
+  font-style: italic;
+  font-size: 32px;
+  line-height: 68px;
+  color: #7335e5;
+  opacity: 0.4;
+}

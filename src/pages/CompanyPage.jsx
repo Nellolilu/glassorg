@@ -78,20 +78,6 @@ export default function CompanyPage(props) {
               alt="Company-Logo"
               className="company-img"
             />
-
-            {isOwner && (
-              <ImageUpload
-                company={singleCompany}
-                setCompany={setSingleCompany}
-              />
-            )}
-
-            {isOwner && (
-              <BgImageUpload
-                company={singleCompany}
-                setCompany={setSingleCompany}
-              />
-            )}
           </div>
           <div className="chain-header">
             <Remember
@@ -107,6 +93,21 @@ export default function CompanyPage(props) {
               <p>{singleCompany.adress}</p>
               <p>{singleCompany.url}</p>
               <p>Company Size: {singleCompany.size}</p>
+
+              {isOwner && (
+                <ImageUpload
+                  company={singleCompany}
+                  setCompany={setSingleCompany}
+                />
+              )}
+
+              {isOwner && (
+                <BgImageUpload
+                  company={singleCompany}
+                  setCompany={setSingleCompany}
+                />
+              )}
+
               {isOwner && <DeleteCompany company={singleCompany} />}
             </div>
 

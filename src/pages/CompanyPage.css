@@ -110,16 +110,24 @@
 .rating-left {
   display: flex;
   flex-direction: column;
-  text-align: end;
   padding-left: 100px;
   margin-right: 100px;
+}
+
+.rating-left h1 {
+  font-size: 32px;
+}
+
+.rating-box p {
+  font-weight: bold;
+  opacity: 1;
 }
 
 .message {
   color: #7335e5;
   font-style: italic;
   font-weight: normal;
-  font-size: 32px;
+  font-size: 18px;
   color: #7335e5;
   margin-top: -15px;
 }
@@ -145,4 +153,70 @@
 
 .rating-listings {
   margin: 70px 0px;
+}
+
+.proof-upload p {
+  color: #7335e5;
+}
+
+.proof-upload input {
+  width: 250px;
+  height: 60px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #7335e5;
+  color: #7335e5;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 47px;
+  margin: 10px 0px 50px;
+}
+
+.image-changer p {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px;
+}
+.small-submit {
+  font-size: 18px;
+  font-weight: 700;
+  box-sizing: border-box;
+  border: none;
+  background-color: white;
+  margin-left: 15px;
+}
+
+.small-submit:hover {
+  color: #7335e5;
+}
+
+.rate-form {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .rate-form section {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
+} */
+
+.rate-form input {
+  width: 300px;
+  height: 30px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #7335e5;
+  color: #7335e5;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 47px;
+  margin-bottom: 40px;
+}
+
+.margin {
+  height: 40px;
 }

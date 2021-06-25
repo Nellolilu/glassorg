@@ -71,49 +71,51 @@ export default function Rating(props) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="rate-form">
-        <div>
-          <label>rate with</label>
-          <input
-            type="number"
-            value={form.rating}
-            onChange={handleChange}
-            name="rating"
-            min="1"
-            max="5"
-          />
-          <label>Comment</label>
-          <input
-            type="text"
-            value={form.comment}
-            onChange={handleChange}
-            name="comment"
-          />
-
-          <section>
-            {user.username}
+      <form onSubmit={handleSubmit}>
+        <div className="rate-form">
+          <div>
+            <label>rate with</label>
+            <br></br>
             <input
-              value={user.username}
-              checked={selectedOption === `${user.username}`}
-              // TODO defaultChecked would be nice is displayed
-              type="radio"
-              name="name"
-              onChange={handleRadioChange}
+              type="number"
+              value={form.rating}
+              onChange={handleChange}
+              name="rating"
+              min="1"
+              max="5"
             />
-            anonymus{" "}
+          </div>
+          <div>
+            <label>Comment</label>
             <input
-              value="anonymus"
-              checked={selectedOption === "anonymus"}
-              type="radio"
-              name="name"
-              onChange={handleRadioChange}
+              type="text"
+              value={form.comment}
+              onChange={handleChange}
+              name="comment"
             />
-          </section>
-
-          <br />
+          </div>
         </div>
-
-        <button type="submit" className="btn">
+        <section>
+          {user.username}
+          <input
+            value={user.username}
+            checked={selectedOption === `${user.username}`}
+            // TODO defaultChecked would be nice is displayed
+            type="radio"
+            name="name"
+            onChange={handleRadioChange}
+          />
+          anonymus{" "}
+          <input
+            value="anonymus"
+            checked={selectedOption === "anonymus"}
+            type="radio"
+            name="name"
+            onChange={handleRadioChange}
+          />
+        </section>
+        <div className="margin"></div>
+        <button type="submit" className="btn-submit">
           send rating
         </button>
       </form>
