@@ -10,8 +10,11 @@ function HomePage() {
     <div>
       <div className="bg-Image">
         <header className="App-header">
-          <h1>EQUALITY IN EVERY POSITION</h1>
-          <p>Find companies who lorem ipsum dolor.</p>
+          <h1> Eat good, look good, work good. </h1>
+          <p>
+            Find Companies that care. See, what they really do about it and who
+            they are working with.{" "}
+          </p>
         </header>
         <section>
           <GetResults />
@@ -32,7 +35,7 @@ function HomePage() {
             <p>
               <span>
                 Corporate transparency is not just a movement - in the digital
-                age transparency is a strong weapon.
+                age transparency is a strong weapon.&nbsp;
               </span>
               It leads to a more egalitarian and connected world and to more
               efficiency and trustworthy companies. Show your approach in beeing

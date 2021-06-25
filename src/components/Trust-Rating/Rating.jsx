@@ -71,9 +71,9 @@ export default function Rating(props) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="rate-form">
         <div>
-          <label>Rating</label>
+          <label>rate with</label>
           <input
             type="number"
             value={form.rating}
@@ -113,7 +113,9 @@ export default function Rating(props) {
           <br />
         </div>
 
-        <button type="submit">send rating</button>
+        <button type="submit" className="btn">
+          send rating
+        </button>
       </form>
     </div>
   );

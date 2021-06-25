@@ -7,13 +7,19 @@ export default function RatingsListings(props) {
       {!company.ratings ? (
         <p> is loading</p>
       ) : (
-        <div>
+        <div className="rating-listings">
           {company.ratings.map((rating) => {
             return (
               <div key={rating._id}>
-                <p> {rating.date}</p>
-                <p> {rating.name}</p>
-                <p> {rating.comment}</p>
+                <p className="rating-info">
+                  {" "}
+                  {rating.date} <span className="bold">{rating.name}</span>
+                </p>
+                <p className="rating-content">
+                  {" "}
+                  <span className="bold">{rating.rating}</span>
+                  {rating.comment}
+                </p>
               </div>
             );
           })}

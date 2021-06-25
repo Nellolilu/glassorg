@@ -13,6 +13,8 @@ import DeleteCompany from "../components/Profile/DeleteCompany";
 import * as CONSTS from "../utils/consts";
 import * as PATHS from "../utils/paths";
 import "./CompanyPage.css";
+import { Link } from "react-router-dom";
+import Footer from "../components/Footer/Footer";
 
 export default function CompanyPage(props) {
   const { user, setUser, authenticate } = props;
@@ -21,6 +23,7 @@ export default function CompanyPage(props) {
   const [listOfAnswers, setListOfAnswers] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   // const [isOwner, setIsOwner] = React.useState(false);
+  const [workchainDisplay, setWorkchainDisplay] = React.useState(false);
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -53,6 +56,10 @@ export default function CompanyPage(props) {
   }
   console.log("AUTH", authenticate);
 
+  function workToggle() {
+    setWorkchainDisplay(!workchainDisplay);
+  }
+
   return (
     <div>
       {!singleCompany.branch ? (
@@ -63,7 +70,6 @@ export default function CompanyPage(props) {
             style={{
               backgroundImage: `url(${singleCompany.bgImage})`,
               backgroundRepeat: "no-repeat",
-              height: "65vh",
             }}
             className="bg-com-Image"
           >
@@ -101,6 +107,7 @@ export default function CompanyPage(props) {
               <p>{singleCompany.adress}</p>
               <p>{singleCompany.url}</p>
               <p>Company Size: {singleCompany.size}</p>
+              {isOwner && <DeleteCompany company={singleCompany} />}
             </div>
 
             <div className="c-head">
@@ -109,57 +116,122 @@ export default function CompanyPage(props) {
               <h4>{singleCompany.description}</h4>
             </div>
           </div>
-
-          <h1>answered</h1>
-
           <div className="answers-box">
-            {listOfAnswers.map((oneQA) => {
+            <div className="answers-left">
+              <h1>answered {singleCompany.answers.length} Questions</h1>
+              <h1>
+                proved {singleCompany.answers.filter((el) => el.proof).length}{" "}
+                Answers
+              </h1>
+            </div>
+            <div className="answers-right">
+              {listOfAnswers.map((oneQA) => {
+                return (
+                  <div key={oneQA._id} className="qa-box">
+                    <div className="questions">
+                      {" "}
+                      <p>{oneQA.question.question}</p>
+                    </div>
+                    <div className="answers">
+                      <h3>{oneQA.answer}</h3>
+                    </div>
+
+                    {oneQA.proof && (
+                      <a href={oneQA.proof} target="_blank" rel="noreferrer">
+                        show proof
+                      </a>
+                    )}
+
+                    {isOwner && (
+                      <ProofUpl
+                        oneQA={oneQA}
+                        company={singleCompany}
+                        setCompany={setSingleCompany}
+                        listOfAnswers={listOfAnswers}
+                        setListOfAnswers={setListOfAnswers}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="dash"></div>
+
+      <div className="chain-box">
+        <button
+          onClick={workToggle}
+          className={!workchainDisplay ? "btn-chain" : "btn-chain-active"}
+        >
+          {workchainDisplay ? (
+            <h4>works with this Companies</h4>
+          ) : (
+            <h4> &gt; works with {singleCompany.workswith.length} Companies</h4>
+          )}
+        </button>
+
+        {/* WORKSWITH */}
+
+        {workchainDisplay && (
+          <div className="companies-container">
+            {singleCompany.workswith.map((coworker) => {
               return (
-                <div key={oneQA._id}>
-                  <div className="questions">
-                    {" "}
-                    <p>{oneQA.question.question}</p>
+                <div key={coworker._id} className="company-box">
+                  {" "}
+                  <img src={coworker.image} alt="company-logo" />
+                  <p>{coworker.branch.branch}</p>
+                  <Link to={`${PATHS.COMPANYROUTE}/${coworker._id}`}>
+                    <h4>{coworker.name}</h4>
+                  </Link>
+                  <p>{coworker.adress}</p>
+                  <div className="rating-box">
+                    <p>{coworker.answers.length}answered</p>
+                    <p>
+                      {coworker.answers.filter((el) => el.proof).length}
+                      proofed
+                    </p>
+                    <p>trust-rated</p>
                   </div>
-                  <div className="answers">
-                    <p>{oneQA.answer}</p>
-                  </div>
-
-                  {oneQA.proof && (
-                    <img
-                      src={oneQA.proof}
-                      style={{ width: "300px" }}
-                      alt="Dayman"
-                    />
-                  )}
-
-                  {isOwner && (
-                    <ProofUpl
-                      oneQA={oneQA}
-                      company={singleCompany}
-                      setCompany={setSingleCompany}
-                      listOfAnswers={listOfAnswers}
-                      setListOfAnswers={setListOfAnswers}
-                    />
-                  )}
                 </div>
               );
             })}
           </div>
-        </div>
-      )}
-      <RatingCalc company={singleCompany} />
+        )}
+      </div>
 
-      {user ? (
-        <Rating
-          user={user}
-          company={singleCompany}
-          setCompany={setSingleCompany}
-        />
-      ) : (
-        <p>log in to leave a rating</p>
-      )}
-      <RatingsListings company={singleCompany} />
-      {isOwner && <DeleteCompany company={singleCompany} />}
+      <div className="dash"></div>
+
+      <div className="rating-container">
+        <div className="rating-left">
+          <h1>
+            <span className="headline">{singleCompany.name}</span>
+            <br />
+            is trust-rated with
+            <RatingCalc company={singleCompany} />
+            out of 5
+          </h1>
+        </div>
+        <div className="rating-right">
+          <h4>do you believe, what {singleCompany.name} is sharing?</h4>
+
+          {user ? (
+            <Rating
+              user={user}
+              company={singleCompany}
+              setCompany={setSingleCompany}
+            />
+          ) : (
+            <p className="message">log in to leave a rating</p>
+          )}
+          <RatingsListings company={singleCompany} />
+        </div>
+      </div>
+      <div className="dash"></div>
+
+      <Footer />
     </div>
   );
 }

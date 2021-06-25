@@ -5,6 +5,13 @@
   background: #353535;
   border-radius: 10px;
   height: 260px;
+  object-fit: cover;
+}
+.bg-com-Image {
+  width: 1550px;
+  height: 580px;
+  background-size: cover;
+  background-position: 40%;
 }
 
 .chain-header {
@@ -58,9 +65,84 @@
 .answers-box {
   background-color: #f1ebfc;
   padding-left: 400px;
-  padding-top: 120px;
-  /* display: flex;
+  padding: 120px 250px 150px 101px;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center; */
+  align-items: flex-start;
+}
+
+.answers-right {
+  width: 600px;
+}
+
+.questions p {
+  font-style: normal;
+  font-size: 18px;
+  line-height: 26px;
+}
+.answers h3 {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 47px;
+  color: #7335e5;
+}
+
+.qa-box {
+  margin-bottom: 40px;
+}
+
+.rating-container {
+  margin-left: 101px;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.rating-right {
+  padding-left: 50px;
+  margin-right: 400px;
+}
+
+.rating-left {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  padding-left: 100px;
+  margin-right: 100px;
+}
+
+.message {
+  color: #7335e5;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 32px;
+  color: #7335e5;
+  margin-top: -15px;
+}
+
+.headline {
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0px 15px;
+  text-transform: uppercase;
+}
+
+.rating-content {
+  padding-bottom: 40px;
+}
+
+.rating-listings {
+  margin: 70px 0px;
 }

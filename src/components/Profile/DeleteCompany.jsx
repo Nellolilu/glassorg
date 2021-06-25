@@ -28,7 +28,10 @@ export default function DeleteCompany(props) {
 
   return (
     <div>
-      <button onClick={deleteListing}> delete</button>
+      <button onClick={deleteListing} className="btn-gray elete">
+        {" "}
+        Delete
+      </button>
     </div>
   );
 }

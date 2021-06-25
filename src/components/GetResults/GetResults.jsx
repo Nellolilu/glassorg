@@ -4,6 +4,7 @@ import * as PATHS from "../../utils/paths";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import lenseBtn from "../../images/lense-btn.png";
+import RatingCalc from "../Trust-Rating/RatingCalc";
 
 export default function GetResults() {
   const [selected, setSelected] = React.useState("All");
@@ -120,11 +121,23 @@ export default function GetResults() {
               </Link>
               <p>{oneCompany.adress}</p>
               <div className="rating-box">
-                <p>{oneCompany.answers.length}answered</p>
                 <p>
-                  {oneCompany.answers.filter((el) => el.proof).length}proofed
+                  answered <br />
+                  {Math.round((oneCompany.answers.length / 6) * 100)} %
                 </p>
-                <p>trust-rated</p>
+                <p>
+                  proved <br />
+                  {Math.round(
+                    (oneCompany.answers.filter((el) => el.proof).length / 6) *
+                      100
+                  )}{" "}
+                  %
+                </p>
+                <p>
+                  trust-rated
+                  <br />
+                  <RatingCalc company={oneCompany} />
+                </p>
               </div>
             </div>
           );

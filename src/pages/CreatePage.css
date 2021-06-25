@@ -1,0 +1,134 @@
+.questionaire {
+  margin-left: 101px;
+}
+
+.questionaire h1 {
+  margin-top: 200px;
+  width: 676px;
+  font-weight: 800;
+  font-size: 64px;
+  line-height: 100%;
+  color: #000000;
+}
+
+.questionaire p {
+  font-size: 18px;
+  line-height: 26px;
+  width: 676px;
+  color: #000000;
+  margin-bottom: 200px;
+}
+
+.questionaire h4 {
+  margin: 0px;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 47px;
+
+  color: #000000;
+}
+
+.questionaire-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.questionaire-left {
+  width: 320px;
+  padding-right: 100px;
+}
+
+.dash.purple {
+  border: 1px solid #7335e5;
+  margin: 0px;
+  margin-bottom: 80px;
+}
+
+.create-form input {
+  width: 600px;
+  height: 60px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #7335e5;
+  color: #7335e5;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 47px;
+}
+
+.create-form input::placeholder {
+  font-style: italic;
+  font-size: 32px;
+  line-height: 68px;
+  color: #7335e5;
+  opacity: 0.4;
+}
+
+.select-wrapper {
+  width: 600px;
+  margin: 30px 0px;
+}
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+}
+select::-ms-expand {
+  display: none;
+}
+
+select {
+  /* ... */
+  width: 100%;
+  height: 40px;
+  -moz-padding-start: calc(10px - 3px);
+  padding-left: 10px;
+  color: #7335e5;
+  border-bottom: 2px solid #7335e5;
+  font-style: italic;
+  font-size: 32px;
+  outline: none;
+}
+select option {
+  color: #7335e5;
+}
+
+.select-box {
+  padding-top: 30px;
+}
+
+.select-box label {
+  color: #7335e5;
+  opacity: 0.4;
+}
+
+.questions-box p {
+  margin: 80px 0px 50px;
+}
+
+.submit-container {
+  margin: 100px 0px;
+}
+
+.btn-submit {
+  width: 200px;
+  height: 60px;
+  background: #f1ebfc;
+  border-radius: 30px;
+  border-style: none;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 26px;
+  text-align: center;
+  color: #7335e5;
+  margin: 0px 10px;
+}
+.btn-submit:hover {
+  background-color: #7335e5;
+  color: #f1ebfc;
+}
