@@ -8,6 +8,7 @@ export default function RatingsListings(props) {
         <p> is loading</p>
       ) : (
         <div className="rating-listings">
+          <div className="dash purple"></div>
           {company.ratings.map((rating) => {
             return (
               <div key={rating._id}>
@@ -17,8 +18,8 @@ export default function RatingsListings(props) {
                 </p>
                 <p className="rating-content">
                   {" "}
-                  <span className="bold">{rating.rating}</span>
-                  {rating.comment}
+                  <span className="bold">trust-score: {rating.rating}</span>
+                  {rating.comment && <span>"{rating.comment}"</span>}
                 </p>
               </div>
             );

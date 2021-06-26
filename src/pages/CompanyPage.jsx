@@ -189,12 +189,23 @@ export default function CompanyPage(props) {
                   </Link>
                   <p>{coworker.adress}</p>
                   <div className="rating-box">
-                    <p>{coworker.answers.length}answered</p>
                     <p>
-                      {coworker.answers.filter((el) => el.proof).length}
-                      proofed
+                      answered <br />
+                      {Math.round((coworker.answers.length / 5) * 100)} %
                     </p>
-                    <p>trust-rated</p>
+                    <p>
+                      proved <br />
+                      {Math.round(
+                        (coworker.answers.filter((el) => el.proof).length / 5) *
+                          100
+                      )}{" "}
+                      %
+                    </p>
+                    <p>
+                      trust-rated
+                      <br />
+                      <RatingCalc company={coworker} />
+                    </p>
                   </div>
                 </div>
               );

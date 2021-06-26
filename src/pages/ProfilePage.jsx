@@ -9,7 +9,7 @@ import UpdateProfile from "../components/Profile/UpdateProfile";
 import LoadingComponent from "../components/Loading";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
-
+import RatingCalc from "../components/Trust-Rating/RatingCalc";
 export default function ProfilePage(props) {
   const { user, authenticate } = props;
   console.log("p in p", props);
@@ -123,12 +123,24 @@ export default function ProfilePage(props) {
                   </Link>
                   <p>{oneCompany.adress}</p>
                   <div className="rating-box">
-                    <p>{oneCompany.answers.length}answered</p>
                     <p>
-                      {oneCompany.answers.filter((el) => el.proof).length}
-                      proofed
+                      answered <br />
+                      {Math.round((oneCompany.answers.length / 5) * 100)} %
                     </p>
-                    <p>trust-rated</p>
+                    <p>
+                      proved <br />
+                      {Math.round(
+                        (oneCompany.answers.filter((el) => el.proof).length /
+                          5) *
+                          100
+                      )}{" "}
+                      %
+                    </p>
+                    <p>
+                      trust-rated
+                      <br />
+                      <RatingCalc company={oneCompany} />
+                    </p>
                   </div>
                 </div>
               );
@@ -164,12 +176,24 @@ export default function ProfilePage(props) {
                   </Link>
                   <p>{oneCompany.adress}</p>
                   <div className="rating-box">
-                    <p>{oneCompany.answers.length}answered</p>
                     <p>
-                      {oneCompany.answers.filter((el) => el.proof).length}
-                      proofed
+                      answered <br />
+                      {Math.round((oneCompany.answers.length / 5) * 100)} %
                     </p>
-                    <p>trust-rated</p>
+                    <p>
+                      proved <br />
+                      {Math.round(
+                        (oneCompany.answers.filter((el) => el.proof).length /
+                          5) *
+                          100
+                      )}{" "}
+                      %
+                    </p>
+                    <p>
+                      trust-rated
+                      <br />
+                      <RatingCalc company={oneCompany} />
+                    </p>
                   </div>
                 </div>
               );
@@ -211,12 +235,24 @@ export default function ProfilePage(props) {
                     </Link>
                     <p>{coworker.adress}</p>
                     <div className="rating-box">
-                      <p>{coworker.answers.length}answered</p>
                       <p>
-                        {coworker.answers.filter((el) => el.proof).length}
-                        proofed
+                        answered <br />
+                        {Math.round((coworker.answers.length / 5) * 100)} %
                       </p>
-                      <p>trust-rated</p>
+                      <p>
+                        proved <br />
+                        {Math.round(
+                          (coworker.answers.filter((el) => el.proof).length /
+                            5) *
+                            100
+                        )}{" "}
+                        %
+                      </p>
+                      <p>
+                        trust-rated
+                        <br />
+                        <RatingCalc company={coworker} />
+                      </p>
                     </div>
                   </div>
                 );

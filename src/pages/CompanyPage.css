@@ -144,7 +144,7 @@
   font-weight: bold;
   font-size: 18px;
   margin: 0px 15px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .rating-content {
