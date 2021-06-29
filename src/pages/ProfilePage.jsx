@@ -180,6 +180,7 @@ export default function ProfilePage(props) {
                       answered <br />
                       {Math.round((oneCompany.answers.length / 5) * 100)} %
                     </p>
+                    {console.log(oneCompany)}
                     <p>
                       proved <br />
                       {Math.round(
@@ -235,6 +236,8 @@ export default function ProfilePage(props) {
                     </Link>
                     <p>{coworker.adress}</p>
                     <div className="rating-box">
+                      {console.log(coworker)}
+
                       <p>
                         answered <br />
                         {Math.round((coworker.answers.length / 5) * 100)} %

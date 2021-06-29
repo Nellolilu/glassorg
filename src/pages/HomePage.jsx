@@ -48,11 +48,10 @@ function HomePage() {
 
         <div className="features">
           <p>
-            youre missing features? map-box or a dark mode. questions too lame?
+            You're missing features? map-box or a dark mode? questions too lame?
             <br />
-            this page is currently worked on. mail me: glassorg@ennenn.studio{" "}
-            <br />
-            or you just want a qr sticker for your window? order here:..
+            Mail me: glassorg@ennenn.studio <br />
+            This page is currently worked on. So far desktop only.
           </p>
         </div>
         <Footer />

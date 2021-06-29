@@ -25,13 +25,12 @@
 .company-header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding-bottom: 100px;
 }
 .c-head {
   width: 900px;
   padding-top: 100px;
-  padding-left: 200px;
+  padding-left: 100px;
 }
 
 .c-head h1 {
@@ -59,6 +58,7 @@
 
 .c-infos {
   padding-left: 105px;
+  /* width: 400px; */
   padding-top: 150px;
 }
 
@@ -178,6 +178,10 @@
   font-weight: bold;
   margin: 0px;
 }
+.image-changer p {
+  width: 450px;
+}
+
 .small-submit {
   font-size: 18px;
   font-weight: 700;
