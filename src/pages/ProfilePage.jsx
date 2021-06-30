@@ -175,7 +175,7 @@ export default function ProfilePage(props) {
                     <h4>{oneCompany.name}</h4>
                   </Link>
                   <p>{oneCompany.adress}</p>
-                  <div className="rating-box">
+                  {/* <div className="rating-box">
                     <p>
                       answered <br />
                       {Math.round((oneCompany.answers.length / 5) * 100)} %
@@ -195,7 +195,7 @@ export default function ProfilePage(props) {
                       <br />
                       <RatingCalc company={oneCompany} />
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               );
             })}
@@ -235,7 +235,7 @@ export default function ProfilePage(props) {
                       <h4>{coworker.name}</h4>
                     </Link>
                     <p>{coworker.adress}</p>
-                    <div className="rating-box">
+                    {/* <div className="rating-box">
                       {console.log(coworker)}
 
                       <p>
@@ -256,7 +256,7 @@ export default function ProfilePage(props) {
                         <br />
                         <RatingCalc company={coworker} />
                       </p>
-                    </div>
+                    </div> */}
                   </div>
                 );
               })

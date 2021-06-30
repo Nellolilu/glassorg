@@ -188,7 +188,7 @@ export default function CompanyPage(props) {
                     <h4>{coworker.name}</h4>
                   </Link>
                   <p>{coworker.adress}</p>
-                  <div className="rating-box">
+                  {/* <div className="rating-box">
                     <p>
                       answered <br />
                       {Math.round((coworker.answers.length / 5) * 100)} %
@@ -206,7 +206,7 @@ export default function CompanyPage(props) {
                       <br />
                       <RatingCalc company={coworker} />
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               );
             })}
