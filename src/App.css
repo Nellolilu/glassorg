@@ -1,15 +1,5 @@
 .App {
-  /* check if text-align: or position: is causing troble;; */
-  /* position: relative; */
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
   max-width: 1550px;
   margin: 0 auto;
   position: relative;
-  /* background: url("./images/cowork.png") no-repeat;
-  height: 700px; */
-
-  /* text-align: center; */
-  /* width: 1600px; */
 }

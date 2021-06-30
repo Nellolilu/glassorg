@@ -95,7 +95,7 @@ export default function CreatePage(props) {
               <p>
                 So there is no rating on what you choose to tell, as an approach
                 is not mesureble. Feel free to answer in sentences. BUT make
-                sure to prove - its the basement for our rating, and others
+                sure to proof - its the basement for our rating, and others
                 trust.
               </p>
             </div>

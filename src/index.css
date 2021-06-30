@@ -4,23 +4,9 @@ body {
   box-sizing: border-box;
   margin: 0;
   font-family: "Be Vietnam", "Roboto", sans-serif;
-  /* "Roboto"; */
-  /* Ironlaucher */
-  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
+  -moz-osx-font-smoothing: grayscale;
 }
-/* 
-#root {
-  text-align: center;
-  background-color: aqua;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-} */
 
 a {
   text-decoration: none;
