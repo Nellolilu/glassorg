@@ -1,4 +1,4 @@
-# glassorg
+# glassorg / client
  
 **Final Project** with *Ironhack web dev bootcamp*
 ### DESKTOP ONLY
