@@ -51,12 +51,12 @@ export default function Workswith(props) {
     const workswithIds = usersCompanies.map((comp) =>
       comp.workswith.map((el) => el._id).includes(company._id)
     );
-    console.log("works with?", workswithIds[0]);
+    // console.log("works with?", workswithIds[0]);
     workChained = workswithIds[0];
 
     if (!workChained) {
-      console.log("you dont work with anyone yet");
-      console.log("you have to have a company to do that");
+      // console.log("you dont work with anyone yet");
+      // console.log("you have to have a company to do that");
       // TO DO ERRORMESSAGE IF SO
       // return <div>"you have to have a company to do that"</div>;
     }

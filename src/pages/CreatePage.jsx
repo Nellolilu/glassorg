@@ -37,7 +37,6 @@ export default function CreatePage(props) {
         headers: { authorization: accessToken },
       })
       .then((response) => {
-        console.log("response:", response);
         setListOfBranches(response.data.allBranches);
         setListOfQuestions(response.data.allQuestions);
         setListOfSizes(response.data.size);

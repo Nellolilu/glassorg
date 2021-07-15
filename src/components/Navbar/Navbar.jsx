@@ -13,11 +13,11 @@ const Navbar = (props) => {
           <img src={logo} className="logo-header" alt="logo" />
         </Link>
       </div>
-      <div>
+      {/* <div>
         <Link to={PATHS.HOMEPAGE} className="navLinks">
           About
         </Link>
-      </div>
+      </div> */}
       <div>
         {props.user ? (
           <>

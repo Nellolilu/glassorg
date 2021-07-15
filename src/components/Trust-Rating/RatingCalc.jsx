@@ -42,7 +42,7 @@ export default function RatingCalc(props) {
       publicSum += mappedDoubleArr.reduce((acc, curr) => acc + curr);
       mappedDouble += mappedDoubleArr.length * 2;
     }
-    console.log(company.ratings.filter((el) => el.name !== "anonymus"));
+    // console.log(company.ratings.filter((el) => el.name !== "anonymus"));
     //// CALC PRIVATE
     const filteredPrivate = company.ratings.filter(
       (el) => el.name === "anonymus"
@@ -55,9 +55,9 @@ export default function RatingCalc(props) {
 
     // TOTAL RATINGS
     calcRating += publicSum + privateSum + startingValue;
-    console.log("rates", publicSum + privateSum);
-    console.log("starting v", startingValue);
-    console.log("total", calcRating);
+    // console.log("rates", publicSum + privateSum);
+    // console.log("starting v", startingValue);
+    // console.log("total", calcRating);
 
     // /// GET AVERAGE
     // PUBLIC COUNTS DOUBLE; INITIAL VALUE COUNTS 2 (to avoid big influence on first rating)

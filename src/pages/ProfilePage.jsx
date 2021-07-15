@@ -12,7 +12,6 @@ import Footer from "../components/Footer/Footer";
 import RatingCalc from "../components/Trust-Rating/RatingCalc";
 export default function ProfilePage(props) {
   const { user, authenticate } = props;
-  console.log("p in p", props);
   const [listOfCompanies, setListOfCompanies] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [displayUpdateProfile, setDisplayUpdateProfile] = React.useState(false);
@@ -46,7 +45,6 @@ export default function ProfilePage(props) {
     }
     PROFILE_SERVICE.PROFILE(accessToken)
       .then((response) => {
-        console.log("response on getting Profile", response);
         setListOfCompanies(response.data.ownedCompanies);
       })
       .catch((err) => {
@@ -68,7 +66,7 @@ export default function ProfilePage(props) {
   //   // listOfCompanies.map((comp) => comp.workswith)
   //   // NEEDS TO BE POPULATED TO SEE
   // );
-  console.log(followDisplay);
+  // console.log(followDisplay);
   return (
     <div>
       <div className="profile-box">

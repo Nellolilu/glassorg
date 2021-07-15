@@ -17,9 +17,8 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 
 export default function CompanyPage(props) {
-  const { user, setUser, authenticate } = props;
+  const { user, setUser } = props;
   const [singleCompany, setSingleCompany] = React.useState({});
-  console.log("company in companypage", singleCompany);
   const [listOfAnswers, setListOfAnswers] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   // const [isOwner, setIsOwner] = React.useState(false);
@@ -54,8 +53,7 @@ export default function CompanyPage(props) {
       isOwner = true;
     }
   }
-  console.log("AUTH", authenticate);
-
+  // console.log("AUTH", authenticate)
   function workToggle() {
     setWorkchainDisplay(!workchainDisplay);
   }

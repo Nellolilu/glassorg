@@ -19,7 +19,7 @@ export default function GetResults() {
     setInputValue(target.value);
   }
   function exchangeBranches(value) {
-    console.log("CHANGIN VLAUE", value);
+    // console.log("CHANGIN VLAUE", value);
     setInputValue("");
     setSelected(value);
   }
